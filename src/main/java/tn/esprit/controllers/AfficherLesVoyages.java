@@ -1,12 +1,17 @@
 package tn.esprit.controllers;
 
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 
 import java.awt.*;
+
 import java.io.IOException;
 import javafx.event.ActionEvent;
 
@@ -15,14 +20,13 @@ import java.io.File;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -60,6 +64,8 @@ public class AfficherLesVoyages implements Initializable {
     private ImageView voyageimg;
     @FXML
     private Button VoyEdit_btn;
+    @FXML
+    private ImageView delete_button;
 
     ArrayList<Voyage> list_voyages = new ArrayList<>();
     private MyListener myListener;
@@ -131,6 +137,7 @@ public class AfficherLesVoyages implements Initializable {
         // Get the controller of the next page
         ModifierVoyage Controller = loader.getController();
         // Pass the chosen voyage to the next page controller
+        Controller.getNameToSearchWith(chosenVoyage);
         Controller.setData(chosenVoyage);
         // Display the next page
         Stage stage = new Stage();
@@ -138,6 +145,43 @@ public class AfficherLesVoyages implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void deleteVoyage(MouseEvent event) {
+        // Retrieve the chosen voyage name
+        String name = voyageNameLabel.getText();
+
+        Voyage chosenvoyage = null; // Declare without initialization
+        // Loop through the list of voyages to find the chosen voyage
+        for (Voyage unit : list_voyages) {
+            if (unit.getNom().equals(name)) {
+                chosenvoyage = unit; // Assign the found voyage
+                System.out.println("the thing worked");
+                break; // Break out of the loop after finding the voyage
+            }
+        }
+        // Check if the chosen voyage was found
+        if (chosenvoyage != null) {
+            // Pass the chosen voyage to the next page
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de la suppression");
+            alert.setContentText("Etes-vous sûre de vouloir supprimer cet item ?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                System.out.println("IM deleting");
+                ServiceVoyage sv = new ServiceVoyage();
+                sv.delete(chosenvoyage.getId());
+
+            }
+            else{
+                alert.close();
+            }
+
+        } else {
+            // Handle case where the chosen voyage is not found
+            System.out.println("Chosen voyage not found: " + name);
+        }
+
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
      list_voyages = getList_voyages();
@@ -185,4 +229,6 @@ public class AfficherLesVoyages implements Initializable {
 
 
     }
+
+
 }

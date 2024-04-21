@@ -100,6 +100,14 @@
                                     <Insets bottom="10.0" />
                                  </HBox.margin>
                               </Button>
+                              <ImageView fx:id="delete_button" fitHeight="37.0" fitWidth="37.0" onMousePressed="#deleteVoyage" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/icons8-empty-trash-100.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="20.0" top="5.0" />
+                                 </HBox.margin>
+                              </ImageView>
                            </children></HBox>
                      </children>
                      <styleClass>

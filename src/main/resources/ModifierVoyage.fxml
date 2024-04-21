@@ -269,7 +269,7 @@
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
                         <Pane prefHeight="73.0" prefWidth="416.0" />
-                        <Button fx:id="modifier_btn" mnemonicParsing="false" prefHeight="40.0" prefWidth="137.0" styleClass="button-1" stylesheets="@styles.css" text="Modifier" textFill="#980b0b">
+                        <Button fx:id="modifier_btn" mnemonicParsing="false" onAction="#EditVoyage" prefHeight="40.0" prefWidth="137.0" styleClass="button-1" stylesheets="@styles.css" text="Modifier" textFill="#980b0b">
                             <font>
                                 <Font size="15.0" />
                             </font>

@@ -3,6 +3,10 @@ package tn.esprit.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,17 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Voyage;
+import tn.esprit.services.ServiceVoyage;
 
 public class ModifierVoyage {
 
@@ -81,24 +82,75 @@ public class ModifierVoyage {
     @FXML
     private ToggleGroup type_voyage;
 
+    ServiceVoyage sv = new ServiceVoyage();
+    ArrayList<Voyage> list_voyages = sv.getAll();
+
+    private String nameToSearchWith ="";
+    void getNameToSearchWith(Voyage voyage){
+        nameToSearchWith = voyage.getNom();
+        System.out.println("the word is :" + nameToSearchWith);
+    }
     void setData(Voyage voyage){
         TFvoy_description_old.setText(voyage.getDescription());
-
         TFvoy_destination_old.setText(voyage.getDestination());
-
         TFvoy_image_old.setText(voyage.getImage1());
-
         TFvoy_nom_old.setText(voyage.getNom());
-
-        TFvoy_prix_old.setText(String.valueOf(voyage.getPrix()));;
+        TFvoy_prix_old.setText(String.valueOf(voyage.getPrix()));
         VoyAjout_date_debut_old.setValue(voyage.getDate_debut().toLocalDate());
-
-
         VoyAjout_date_fin_old.setValue(voyage.getDate_fin().toLocalDate());
-
         VoyType1_old.isSelected();
         System.out.println("WE ARE PUTTING STUFF HERE");
+    }
 
+    @FXML
+    void EditVoyage(ActionEvent event) {
+        int ID = 0;
+        Voyage chosenvoyage = null;
+        for (Voyage unit : list_voyages) {
+            System.out.println("the unit is named : " + unit.getNom());
+            if (unit.getNom().toLowerCase().equals(nameToSearchWith.toLowerCase())) {
+                chosenvoyage = unit;
+                ID = unit.getId();
+                break; // Break out of the loop after finding the voyage
+            }
+        }
+        if (chosenvoyage == null) {
+            System.out.println("it's NULLLLLL");
+        }
+        String type = "";
+        if (VoyType1_old.isSelected()) {
+            type = VoyType1_old.getText();
+        } else if (VoyType2_old.isSelected()) {
+            type = VoyType2_old.getText();
+        }
+
+        String file = TFvoy_image_old.getText();
+
+        // Vérifier si le fichier existe
+        if (!Files.exists(Paths.get(file))) {
+            afficherErreur("Le fichier spécifié n'existe pas.");
+            return;
+        }
+
+        Voyage update = new Voyage(ID, TFvoy_nom_old.getText(), Integer.parseInt(TFvoy_prix_old.getText()), TFvoy_destination_old.getText(),
+                TFvoy_description_old.getText(), TFvoy_image_old.getText(), VoyAjout_date_debut_old.getValue().atStartOfDay(),
+                VoyAjout_date_fin_old.getValue().atStartOfDay(), type);
+        try {
+            ServiceVoyage serviceVoyage = new ServiceVoyage();
+            serviceVoyage.update(update);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Le voyage a été modifié avec succés.");
+            alert.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void afficherErreur(String message)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(message);
+        alert.show();
     }
 
     @FXML
