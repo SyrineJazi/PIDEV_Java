@@ -19,8 +19,8 @@ public class VoyageHome extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterVoyage.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/VoyageListInterface.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterVoyage.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/VoyageListInterface.fxml"));
         try
         {
             Parent root = loader.load();

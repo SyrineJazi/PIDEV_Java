@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterVoyage">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterVoyage">
    <left>
       <VBox prefHeight="200.0" prefWidth="340.0" styleClass="primary-color" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                         <Insets />
                      </VBox.margin>
                   </ImageView>
-                  <Label prefHeight="43.0" prefWidth="145.0" text="Welcome, Admin" textAlignment="CENTER" textFill="#3a5965">
+                  <Label prefHeight="43.0" prefWidth="145.0" text="Welcome, Admin" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -44,119 +44,89 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0" styleClass="sidebar_hbox" stylesheets="@styles.css">
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/home_icon.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="187.0" text="Home" textFill="#3a5965">
+                        <Button fx:id="Home_btn" mnemonicParsing="false" prefHeight="41.0" prefWidth="162.0" styleClass="nav_btn" stylesheets="@styles.css" text="Home" textFill="#3a5965">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="19.0" />
                            </font>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
+                        </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="25.0" prefHeight="45.0" prefWidth="200.0" styleClass="sidebar_hbox" stylesheets="@styles.css">
+                  <HBox fx:id="VosVoyages_btn" alignment="CENTER" layoutX="10.0" layoutY="25.0" onMouseClicked="#navigateToAfficherLesVoyages" prefHeight="45.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/airplane_icon.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="188.0" text="Vos voyages" textFill="#3a5965">
+                        <Button fx:id="ListVoyage_btn" mnemonicParsing="false" onAction="#navigateToAfficherLesVoyages" prefHeight="40.0" prefWidth="160.0" styleClass="nav_btn" stylesheets="@styles.css" text="Vos Voyages" textFill="#3a5965">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="19.0" />
                            </font>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
+                        </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="45.0" prefWidth="200.0" styleClass="sidebar_hbox" stylesheets="@styles.css">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="90.0" prefHeight="45.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/spot_icon.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="189.0" text="Spots touristiques" textFill="#3a5965">
+                        <Button fx:id="Spot_btn" mnemonicParsing="false" prefHeight="41.0" prefWidth="159.0" styleClass="nav_btn" stylesheets="@styles.css" text="Spots " textFill="#3a5965">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="19.0" />
                            </font>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
+                        </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="149.0" prefHeight="45.0" prefWidth="200.0" styleClass="sidebar_hbox" stylesheets="@styles.css">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="149.0" prefHeight="45.0" prefWidth="200.0" styleClass="x">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/events_icon.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="191.0" text="Evenements" textFill="#3a5965">
+                        <Button fx:id="Event_btn" mnemonicParsing="false" prefHeight="41.0" prefWidth="162.0" styleClass="nav_btn" stylesheets="@styles.css" text="Evenements" textFill="#3a5965">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="19.0" />
                            </font>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
+                        </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="219.0" prefHeight="45.0" prefWidth="200.0" styleClass="sidebar_hbox" stylesheets="@styles.css">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="219.0" prefHeight="45.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/blog_icon.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="191.0" text="Blogs" textFill="#3a5965">
+                        <Button fx:id="Blog_btn" mnemonicParsing="false" prefHeight="41.0" prefWidth="160.0" styleClass="nav_btn" stylesheets="@styles.css" text="Blogs" textFill="#3a5965">
                            <font>
-                              <Font name="System Bold" size="16.0" />
+                              <Font size="19.0" />
                            </font>
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
+                        </Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
                </children>
@@ -174,7 +144,7 @@
             </Label>
             <VBox prefHeight="438.0" prefWidth="640.0">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets left="50.0" top="20.0" />
                </VBox.margin>
                <children>
                   <Label prefHeight="17.0" prefWidth="244.0" text="Détails du voyage" textFill="#3a5965">
@@ -298,8 +268,8 @@
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Pane prefHeight="73.0" prefWidth="357.0" />
-                  <Button fx:id="confirmer_ajoutVoy_btn" mnemonicParsing="false" onAction="#AjouterVoyage" prefHeight="40.0" prefWidth="144.0" styleClass="button-1" stylesheets="@styles.css" text="Confirmer" textFill="#980b0b">
+                  <Pane prefHeight="73.0" prefWidth="416.0" />
+                  <Button fx:id="confirmer_ajoutVoy_btn" mnemonicParsing="false" onAction="#AjouterVoyage" prefHeight="40.0" prefWidth="137.0" styleClass="button-1" stylesheets="@styles.css" text="Confirmer" textFill="#980b0b">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -11,7 +11,16 @@
     /*-fx-border-color: #647D87; /* Border color */
     -fx-border-width: 2px; /* Border width */
 }
+.nav_btn {
+    text-fill: #3a5965;
+    min-width: auto;
+    background-color: red;
+    font-size: 14px;
 
+}
+.nav_btn:hover{
+    text-fill: white;
+}
 .sidebar_hbox:hover {
     -fx-background-color: #ACE2E1; /* Background color on hover */
 }
@@ -23,6 +32,7 @@
     -fx-padding: 10px 20px; /* Padding */
     -fx-border-radius: 5px; /* Rounded corners */
     -fx-border-width: 1px; /* Border width */
+    -fx-font-weight: bold;
 }
 
 /* CSS for button hover effect */

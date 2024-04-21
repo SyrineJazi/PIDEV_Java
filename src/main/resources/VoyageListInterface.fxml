@@ -65,12 +65,12 @@
                      <children>
                         <HBox prefHeight="53.0" prefWidth="315.0">
                            <children>
-                              <Label fx:id="voyageNameLabel" prefHeight="48.0" prefWidth="276.0" text="Peach" textFill="WHITE">
+                              <Label fx:id="voyageNameLabel" prefHeight="48.0" prefWidth="276.0" text="Peach">
                                  <font>
                                     <Font name="Cambria" size="25.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="voyagePriceLabel" prefHeight="57.0" prefWidth="171.0" text="\$2.99" textFill="WHITE">
+                              <Label fx:id="voyagePriceLabel" prefHeight="57.0" prefWidth="171.0" text="\$2.99">
                                  <font>
                                     <Font name="Cambria" size="25.0" />
                                  </font>
@@ -93,15 +93,14 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0" />
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@styles.css" text="En savoir plus.." textFill="#828282">
-                           <VBox.margin>
-                              <Insets bottom="20.0" top="30.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="17.0" />
-                           </font>
-                        </Button>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Button fx:id="VoyEdit_btn" mnemonicParsing="false" onAction="#OnVoyEdit" prefHeight="23.0" prefWidth="224.0" styleClass="search-button" stylesheets="@styles.css" text="Modifier" textFill="#eef4f3">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children></HBox>
                      </children>
                      <styleClass>
                         <String fx:value="chosen-fruit-card" />
