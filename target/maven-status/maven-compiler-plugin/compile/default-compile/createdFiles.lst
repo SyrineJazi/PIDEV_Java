@@ -1,0 +1,14 @@
+tn\esprit\models\comm.class
+tn\esprit\services\ServicePersonne.class
+tn\esprit\controler\DetailsController.class
+tn\esprit\models\Blog.class
+tn\esprit\models\Details.class
+tn\esprit\services\CommService.class
+tn\esprit\utils\MyDataBase.class
+tn\esprit\controler\Ajoutercomm.class
+tn\esprit\models\Personne.class
+Main.class
+tn\esprit\interfaces\IService.class
+tn\esprit\controler\AjouterBlog.class
+tn\esprit\services\BlogService.class
+tn\esprit\controler\BlogListCell.class

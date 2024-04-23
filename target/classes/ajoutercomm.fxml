@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controler.Ajoutercomm">
+   <children>
+      <ComboBox fx:id="combobox" layoutX="97.0" layoutY="47.0" onAction="#choixblog" prefWidth="150.0" promptText="blog t" />
+      <Label layoutX="45.0" layoutY="51.0" text="blog" />
+      <Label layoutX="33.0" layoutY="117.0" text="commentaire " />
+      <TextField fx:id="comm" layoutX="107.0" layoutY="113.0" />
+      <Button fx:id="ajoutcomm" layoutX="34.0" layoutY="180.0" mnemonicParsing="false" onAction="#ajoutcomm" text="ajout" />
+      <Button fx:id="deletecomm" layoutX="133.0" layoutY="180.0" mnemonicParsing="false" onAction="#deletecomm" text="delete" />
+      <TableView fx:id="tablec" layoutX="285.0" layoutY="51.0" prefHeight="200.0" prefWidth="298.0">
+        <columns>
+          <TableColumn fx:id="idp" prefWidth="75.0" text="post" />
+          <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+            <TableColumn fx:id="contenu" prefWidth="75.0" text="contenu" />
+        </columns>
+      </TableView>
+      <Button fx:id="modifiercomm" layoutX="146.0" layoutY="276.0" mnemonicParsing="false" onAction="#modifiercomm" text="modifier" />
+   </children>
+</AnchorPane>
