@@ -20,7 +20,6 @@ public class BlogService {
     }
 
     public boolean add(Blog b) {
-
         boolean success = false;
         String insert = "INSERT INTO blog (titre, content, imageb, date,favoris) VALUES (?, ?, ?, ?,?)";
         try {
@@ -43,8 +42,6 @@ public class BlogService {
         }
         return success;
     }
-
-
     public ObservableList<Blog> getAll() {
         ObservableList<Blog> blogs = FXCollections.observableArrayList();
         String qry = "SELECT * FROM blog";
@@ -66,31 +63,6 @@ public class BlogService {
         }
         return blogs;
     }
-
-
-    public List<Blog> getAllBlogs() {
-        ArrayList<Blog> blogs = new ArrayList<>();
-        String query = "SELECT * FROM blog";
-        try {
-            Statement stm = cnx.createStatement();
-            ResultSet rs = stm.executeQuery(query);
-            while (rs.next()) {
-                Blog blog = new Blog();
-                blog.setId(rs.getInt("id"));
-                blog.setTitre(rs.getString("titre"));
-                blog.setContent(rs.getString("content"));
-                blog.setImageP(rs.getString("imageb"));
-                blog.setDate(rs.getDate("date"));
-                blog.setFavoris(rs.getBoolean("favoris"));
-                blogs.add(blog);
-
-            }
-        } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération des blogs : " + e.getMessage());
-        }
-        return blogs;
-    }
-
     public void update(Blog b) {
         try {
             String req = "update blog  set titre =? , content =? ,imageb=? where id=?";
