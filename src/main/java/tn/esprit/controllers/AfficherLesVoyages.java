@@ -1,5 +1,7 @@
 package tn.esprit.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +60,7 @@ public class AfficherLesVoyages implements Initializable {
     private ImageView delete_button;
 
     ArrayList<Voyage> list_voyages = new ArrayList<>();
+    private ObservableList<Voyage> listeObservable_voyages = FXCollections.observableArrayList(getList_voyages());
     private MyListener myListener;
     private Image image;
     private ArrayList<Voyage> getList_voyages(){
@@ -91,7 +94,7 @@ public class AfficherLesVoyages implements Initializable {
         Voyage chosenvoyage = null; // Declare without initialization
 
         // Loop through the list of voyages to find the chosen voyage
-        for (Voyage unit : list_voyages) {
+        for (Voyage unit : listeObservable_voyages) {
             if (unit.getNom().equals(name)) {
                 chosenvoyage = unit; // Assign the found voyage
                 System.out.println("the thing worked");
@@ -165,7 +168,7 @@ public class AfficherLesVoyages implements Initializable {
 
         Voyage chosenvoyage = null; // Declare without initialization
         // Loop through the list of voyages to find the chosen voyage
-        for (Voyage unit : list_voyages) {
+        for (Voyage unit : listeObservable_voyages) {
             if (unit.getNom().equals(name)) {
                 chosenvoyage = unit; // Assign the found voyage
                 System.out.println("the thing worked");
@@ -184,6 +187,11 @@ public class AfficherLesVoyages implements Initializable {
                 ServiceVoyage sv = new ServiceVoyage();
                 sv.delete(chosenvoyage.getId());
 
+                // Update the observable list by removing the deleted voyage
+                listeObservable_voyages.remove(chosenvoyage);
+                // Update the UI by rebuilding the grid
+                rebuildGrid();
+
             }
             else{
                 alert.close();
@@ -195,11 +203,46 @@ public class AfficherLesVoyages implements Initializable {
         }
 
     }
+
+    private void rebuildGrid() {
+        grid.getChildren().clear(); // Clear the grid
+
+        int column = 0;
+        int row = 1;
+        try {
+            for (Voyage voyage : listeObservable_voyages) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Voyage_item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                VoyageItem controller = fxmlLoader.getController();
+                controller.setData(voyage, myListener);
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                grid.add(anchorPane, column++, row); //(child,column,row)
+                //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-     list_voyages = getList_voyages();
-     if(!list_voyages.isEmpty()){
-         setChosenVoyage(list_voyages.get(0));
+     if(!listeObservable_voyages.isEmpty()){
+         setChosenVoyage(listeObservable_voyages.get(0));
          myListener = new MyListener(){
              @Override
              public void onClickListener(Voyage voyage) {
@@ -210,7 +253,7 @@ public class AfficherLesVoyages implements Initializable {
      int column = 0;
      int row = 1;
      try{
-         for(Voyage voyage : list_voyages){
+         for(Voyage voyage : listeObservable_voyages){
              FXMLLoader fxmlLoader = new FXMLLoader();
              fxmlLoader.setLocation(getClass().getResource("/Voyage_item.fxml"));
              AnchorPane anchorPane = fxmlLoader.load();
@@ -234,14 +277,30 @@ public class AfficherLesVoyages implements Initializable {
 
              GridPane.setMargin(anchorPane, new Insets(10));
          }
-     }
-     catch (IOException e) {
+     }catch (IOException e) {
          e.printStackTrace();
-     }
-
+        }
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
