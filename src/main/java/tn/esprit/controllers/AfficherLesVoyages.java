@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -190,7 +191,7 @@ public class AfficherLesVoyages implements Initializable {
                 // Update the observable list by removing the deleted voyage
                 listeObservable_voyages.remove(chosenvoyage);
                 // Update the UI by rebuilding the grid
-                rebuildGrid();
+                buildGrid();
 
             }
             else{
@@ -203,10 +204,14 @@ public class AfficherLesVoyages implements Initializable {
         }
 
     }
-
-    private void rebuildGrid() {
-        grid.getChildren().clear(); // Clear the grid
-
+    private boolean isGridEmpty(){
+        ObservableList<Node> children = grid.getChildren();
+        return children.isEmpty();
+    }
+    private void buildGrid() {
+        if(!isGridEmpty()){
+            grid.getChildren().clear(); // Clear the grid
+        }
         int column = 0;
         int row = 1;
         try {
@@ -238,7 +243,6 @@ public class AfficherLesVoyages implements Initializable {
             e.printStackTrace();
         }
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
      if(!listeObservable_voyages.isEmpty()){
@@ -250,38 +254,7 @@ public class AfficherLesVoyages implements Initializable {
              }
          };
      }
-     int column = 0;
-     int row = 1;
-     try{
-         for(Voyage voyage : listeObservable_voyages){
-             FXMLLoader fxmlLoader = new FXMLLoader();
-             fxmlLoader.setLocation(getClass().getResource("/Voyage_item.fxml"));
-             AnchorPane anchorPane = fxmlLoader.load();
-
-             VoyageItem controller = fxmlLoader.getController();
-             controller.setData(voyage,myListener);
-             if (column == 3) {
-                 column = 0;
-                 row++;
-             }
-             grid.add(anchorPane, column++, row); //(child,column,row)
-             //set grid width
-             grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-             grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-             grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-             //set grid height
-             grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-             grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-             grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-             GridPane.setMargin(anchorPane, new Insets(10));
-         }
-     }catch (IOException e) {
-         e.printStackTrace();
-        }
-
-
+     buildGrid();
     }
 
 
