@@ -20,6 +20,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -109,14 +111,22 @@ public class AjouterVoyage {
             return;
         }
 
+        LocalDate dateToday = java.time.LocalDate.now();
+
         // Valider la chronologie des dates
         if (!debutDate.isBefore(finDate)) {
             afficherErreur("La date de début doit être antérieure à la date de fin.");
             return;
         }
+        //Valider que la date de début choisi n'est pas dans le passé
+        if(debutDate.isBefore(dateToday)){
+            afficherErreur("Vous pouvez pas voyager dans le passé (｡T ω T｡)");
+            return;
+        }
 
         LocalDateTime debutDateTime = debutDate.atStartOfDay();
         LocalDateTime finDateTime = finDate.atStartOfDay();
+
 
         // Control de saisie -FIN
 
