@@ -22,6 +22,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDate;
+import java.util.Arrays;
+import java.util.Locale;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -43,7 +45,7 @@ public class AjouterVoyage {
     private TextField TFvoy_description;
 
     @FXML
-    private TextField TFvoy_destination;
+    private ComboBox TFvoy_destination;
 
     @FXML
     private TextField TFvoy_image;
@@ -63,6 +65,16 @@ public class AjouterVoyage {
 
     @FXML
     private Button confirmer_ajoutVoy_btn;
+
+    public void populateCountryComboBox(){
+        String[] countryCodes = Locale.getISOCountries();
+        Arrays.sort(countryCodes);
+        // Populate ComboBox with country names
+        for (String countryCode : countryCodes) {
+            Locale locale = new Locale("", countryCode);
+            TFvoy_destination.getItems().add(locale.getDisplayCountry());
+        }
+    }
 
     @FXML
     void AjouterVoyage(ActionEvent event) {
@@ -84,15 +96,20 @@ public class AjouterVoyage {
 
         String voyageNom = TFvoy_nom.getText();
         String voyagePrixText = TFvoy_prix.getText();
-        String voyageDestination = TFvoy_destination.getText();
+        String voyageDestination = (String) TFvoy_destination.getValue();
         String voyageDescription = TFvoy_description.getText();
         String voyageImage = TFvoy_image.getText();
 
         LocalDate debutDate = VoyAjout_date_debut.getValue();
         LocalDate finDate = VoyAjout_date_fin.getValue();
 
+        //Verifier si une destination a été séléctionné
+        if (TFvoy_destination.getValue() == null){
+            afficherErreur("Veuillez remplir tous les champs.");
+            return;
+        }
         // Verifier L'input
-        if (voyageNom.isEmpty() || voyagePrixText.isEmpty() || voyageDestination.isEmpty() ||
+        if (voyageNom.isEmpty() || voyagePrixText.isEmpty() ||
                 voyageDescription.isEmpty() || voyageImage.isEmpty() || debutDate == null || finDate == null) {
             afficherErreur("Veuillez remplir tous les champs.");
             return;
@@ -180,6 +197,7 @@ public class AjouterVoyage {
 
     @FXML
     void initialize() {
+        populateCountryComboBox();
     }
 
 }
