@@ -1,15 +1,5 @@
 package tn.esprit.controllers;
 
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.util.Random;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +12,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Voyage;
 import tn.esprit.services.ServiceVoyage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Random;
+import java.util.ResourceBundle;
 
 public class AjouterVoyage {
 
@@ -66,24 +66,63 @@ public class AjouterVoyage {
     void AjouterVoyage(ActionEvent event) {
         Random random = new Random();
         int ID = random.nextInt(Integer.MAX_VALUE) + 1;
-        LocalDateTime date_debut = LocalDateTime.of(2002, 2, 25, 0, 0, 0);
-        LocalDateTime date_fin = LocalDateTime.of(2003, 3, 25, 0, 0, 0);
 
+        // Radio buttons pour le type
         String type = "";
         if(VoyType1.isSelected()){type = VoyType1.getText();}
         else if (VoyType2.isSelected()){type = VoyType2.getText();}
 
         String file = TFvoy_image.getText();
 
-        // Vérifier si le fichier existe
+        // Control de saisie -DEBUT
         if (!Files.exists(Paths.get(file))) {
             afficherErreur("Le fichier spécifié n'existe pas.");
             return;
         }
 
-        Voyage new_voyage = new Voyage(ID,TFvoy_nom.getText(),Integer.parseInt(TFvoy_prix.getText()),TFvoy_destination.getText(),
-                TFvoy_description.getText(),TFvoy_image.getText(), VoyAjout_date_debut.getValue().atStartOfDay(),
-                VoyAjout_date_fin.getValue().atStartOfDay(),type);
+        String voyageNom = TFvoy_nom.getText();
+        String voyagePrixText = TFvoy_prix.getText();
+        String voyageDestination = TFvoy_destination.getText();
+        String voyageDescription = TFvoy_description.getText();
+        String voyageImage = TFvoy_image.getText();
+
+        LocalDate debutDate = VoyAjout_date_debut.getValue();
+        LocalDate finDate = VoyAjout_date_fin.getValue();
+
+        // Verifier L'input
+        if (voyageNom.isEmpty() || voyagePrixText.isEmpty() || voyageDestination.isEmpty() ||
+                voyageDescription.isEmpty() || voyageImage.isEmpty() || debutDate == null || finDate == null) {
+            afficherErreur("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        // TFvoy_prix est positive
+        int voyagePrix;
+        try {
+            voyagePrix = Integer.parseInt(voyagePrixText);
+            if (voyagePrix <= 0) {
+                afficherErreur("Le prix du voyage doit être un nombre positif.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            afficherErreur("Le prix du voyage doit être un nombre entier.");
+            return;
+        }
+
+        // Valider la chronologie des dates
+        if (!debutDate.isBefore(finDate)) {
+            afficherErreur("La date de début doit être antérieure à la date de fin.");
+            return;
+        }
+
+        LocalDateTime debutDateTime = debutDate.atStartOfDay();
+        LocalDateTime finDateTime = finDate.atStartOfDay();
+
+        // Control de saisie -FIN
+
+        Voyage new_voyage = new Voyage(ID, voyageNom, voyagePrix, voyageDestination, voyageDescription,
+                voyageImage, debutDateTime, finDateTime, type);
+
         try {
             ServiceVoyage serviceVoyage = new ServiceVoyage();
             serviceVoyage.add(new_voyage);

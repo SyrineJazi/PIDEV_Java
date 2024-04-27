@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -126,15 +128,54 @@ public class ModifierVoyage {
 
         String file = TFvoy_image_old.getText();
 
-        // Vérifier si le fichier existe
+        // Control de saisie -DEBUT
         if (!Files.exists(Paths.get(file))) {
             afficherErreur("Le fichier spécifié n'existe pas.");
             return;
         }
 
-        Voyage update = new Voyage(ID, TFvoy_nom_old.getText(), Integer.parseInt(TFvoy_prix_old.getText()), TFvoy_destination_old.getText(),
-                TFvoy_description_old.getText(), TFvoy_image_old.getText(), VoyAjout_date_debut_old.getValue().atStartOfDay(),
-                VoyAjout_date_fin_old.getValue().atStartOfDay(), type);
+        String voyageNom = TFvoy_nom_old.getText();
+        String voyagePrixText = TFvoy_prix_old.getText();
+        String voyageDestination = TFvoy_destination_old.getText();
+        String voyageDescription = TFvoy_description_old.getText();
+        String voyageImage = TFvoy_image_old.getText();
+
+        LocalDate debutDate = VoyAjout_date_debut_old.getValue();
+        LocalDate finDate = VoyAjout_date_fin_old.getValue();
+
+        // Verifier L'input
+        if (voyageNom.isEmpty() || voyagePrixText.isEmpty() || voyageDestination.isEmpty() ||
+                voyageDescription.isEmpty() || voyageImage.isEmpty() || debutDate == null || finDate == null) {
+            afficherErreur("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        // TFvoy_prix est positive
+        int voyagePrix;
+        try {
+            voyagePrix = Integer.parseInt(voyagePrixText);
+            if (voyagePrix <= 0) {
+                afficherErreur("Le prix du voyage doit être un nombre positif.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            afficherErreur("Le prix du voyage doit être un nombre entier.");
+            return;
+        }
+
+        // Valider la chronologie des dates
+        if (!debutDate.isBefore(finDate)) {
+            afficherErreur("La date de début doit être antérieure à la date de fin.");
+            return;
+        }
+
+        LocalDateTime debutDateTime = debutDate.atStartOfDay();
+        LocalDateTime finDateTime = finDate.atStartOfDay();
+
+        // Control de saisie -FIN
+
+        Voyage update = new Voyage(ID, voyageNom, voyagePrix, voyageDestination, voyageDescription,
+                voyageImage, debutDateTime, finDateTime, type);
         try {
             ServiceVoyage serviceVoyage = new ServiceVoyage();
             serviceVoyage.update(update);

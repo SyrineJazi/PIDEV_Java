@@ -1,44 +1,31 @@
 package tn.esprit.controllers;
 
-import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
-
-import java.awt.*;
-
-import java.io.IOException;
 import javafx.event.ActionEvent;
-
-
-import java.io.File;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import tn.esprit.interfaces.MyListener;
 import tn.esprit.models.Voyage;
 import tn.esprit.services.ServiceVoyage;
 
-
-// comment for github
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class AfficherLesVoyages implements Initializable {
 
@@ -146,6 +133,29 @@ public class AfficherLesVoyages implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+    @FXML
+    private void navigateToAjouterVoyage(MouseEvent event) {
+        // Load the FXML file of the next page
+        System.out.println("I NAVIGATED");
+
+        FXMLLoader loader;
+        Parent root;
+        try {
+            loader = new FXMLLoader(getClass().getResource("/AjouterVoyage.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+        /*
+        Stage currentStage = (Stage) root.getScene().getWindow();
+        currentStage.close();
+
+         */
     }
 
     @FXML

@@ -125,25 +125,20 @@
                   <HBox prefHeight="77.0" prefWidth="725.0">
                      <children>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
-                        <HBox alignment="CENTER" prefHeight="77.0" prefWidth="331.0" styleClass="free-delivery-card" stylesheets="@styles.css">
+                        <HBox fx:id="goToAjouter" alignment="CENTER" onMousePressed="#navigateToAjouterVoyage" prefHeight="77.0" prefWidth="331.0" styleClass="free-delivery-card" stylesheets="@styles.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
                                  <children>
-                                    <Label prefHeight="29.0" prefWidth="190.0" text="Free delivery" textFill="#878787">
+                                    <Label prefHeight="29.0" prefWidth="190.0" text="Ajouter un voyage" textFill="#878787">
                                        <font>
                                           <Font name="Cambria Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="16.0" prefWidth="190.0" text="over $20 order" textFill="#878787">
-                                       <font>
-                                          <Font name="Cambria" size="15.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </VBox>
                               <ImageView fitHeight="49.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@img/ic_delivery.png" />
+                                    <Image url="@img/icons8-add-100.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -153,7 +148,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
                                  <children>
-                                    <Label prefHeight="29.0" prefWidth="158.0" text="Shopping online" textFill="#878787">
+                                    <Label prefHeight="30.0" prefWidth="171.0" text="Ajouter une activité" textFill="#92c79d">
                                        <font>
                                           <Font name="Cambria Bold" size="18.0" />
                                        </font>
@@ -162,7 +157,7 @@
                               </VBox>
                               <ImageView fitHeight="49.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@img/ic_cart.png" />
+                                    <Image url="@img/icons8-add-100%20(1).png" />
                                  </image>
                                  <HBox.margin>
                                     <Insets right="15.0" />
