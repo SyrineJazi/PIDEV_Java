@@ -111,9 +111,13 @@
     -fx-background-color: #FFC55A;
 }
 
+
+/*
 .combo-box-base:hover {
-    -fx-background-color: #B3C8CF;
+-fx-background-color: #B3C8CF;
 }
+ */
+
 
 .convert_button {
     -fx-background-color: #6DA4AA; /* Green background */

@@ -7,6 +7,7 @@ module PIDEV.voyage {
     requires java.sql;
     requires java.datatransfer;
     requires java.desktop;
+    requires json.simple;
 
     opens tn.esprit.controllers;
 }
