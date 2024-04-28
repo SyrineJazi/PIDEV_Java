@@ -7,9 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +51,7 @@ public class ModifierVoyage {
     private TextField TFvoy_description_old;
 
     @FXML
-    private TextField TFvoy_destination_old;
+    private ComboBox TFvoy_destination_old;
 
     @FXML
     private TextField TFvoy_image_old;
@@ -92,9 +91,18 @@ public class ModifierVoyage {
         nameToSearchWith = voyage.getNom();
         System.out.println("the word is :" + nameToSearchWith);
     }
+    public void populateCountryComboBox(){
+        String[] countryCodes = Locale.getISOCountries();
+        Arrays.sort(countryCodes);
+        // Populate ComboBox with country names
+        for (String countryCode : countryCodes) {
+            Locale locale = new Locale("", countryCode);
+            TFvoy_destination_old.getItems().add(locale.getDisplayCountry());
+        }
+    }
     void setData(Voyage voyage){
         TFvoy_description_old.setText(voyage.getDescription());
-        TFvoy_destination_old.setText(voyage.getDestination());
+        TFvoy_destination_old.setValue(voyage.getDestination());
         TFvoy_image_old.setText(voyage.getImage1());
         TFvoy_nom_old.setText(voyage.getNom());
         TFvoy_prix_old.setText(String.valueOf(voyage.getPrix()));
@@ -107,7 +115,6 @@ public class ModifierVoyage {
         }
         System.out.println("WE ARE PUTTING STUFF HERE");
     }
-
     @FXML
     void EditVoyage(ActionEvent event) {
         int ID = 0;
@@ -140,42 +147,72 @@ public class ModifierVoyage {
 
         String voyageNom = TFvoy_nom_old.getText();
         String voyagePrixText = TFvoy_prix_old.getText();
-        String voyageDestination = TFvoy_destination_old.getText();
+        String voyageDestination = (String) TFvoy_destination_old.getValue();
         String voyageDescription = TFvoy_description_old.getText();
         String voyageImage = TFvoy_image_old.getText();
-
         LocalDate debutDate = VoyAjout_date_debut_old.getValue();
         LocalDate finDate = VoyAjout_date_fin_old.getValue();
 
-        // Verifier L'input
-        if (voyageNom.isEmpty() || voyagePrixText.isEmpty() || voyageDestination.isEmpty() ||
-                voyageDescription.isEmpty() || voyageImage.isEmpty() || debutDate == null || finDate == null) {
-            afficherErreur("Veuillez remplir tous les champs.");
+
+        if (voyageNom.isEmpty()){
+            TFvoy_nom_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_nom_old).play();
+            return;
+        }
+        if (TFvoy_destination_old.getValue() == null){
+            TFvoy_destination_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_destination_old).play();
+            return;
+        }
+        if(voyageDescription.isEmpty()){
+            TFvoy_description_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_description_old).play();
+            return;
+        }
+        if(voyagePrixText.isEmpty()){
+            TFvoy_prix_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_prix_old).play();
+            return;
+        }
+        if(voyageImage.isEmpty()){
+            TFvoy_image_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_image_old).play();
+            return;
+        }
+        if(debutDate == null){
+            VoyAjout_date_debut_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(VoyAjout_date_debut_old).play();
+            return;
+        }
+        if(finDate == null){
+            VoyAjout_date_fin_old.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(VoyAjout_date_fin_old).play();
             return;
         }
 
         // TFvoy_prix est positive
         int voyagePrix;
-        try {
-            voyagePrix = Integer.parseInt(voyagePrixText);
-            if (voyagePrix <= 0) {
-                afficherErreur("Le prix du voyage doit être un nombre positif.");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            afficherErreur("Le prix du voyage doit être un nombre entier.");
+        voyagePrix = Integer.parseInt(voyagePrixText);
+        if (voyagePrix <= 0) {
+            afficherErreur("Le prix du voyage doit être un nombre positif.");
             return;
         }
 
+        //LocalDate dateToday = java.time.LocalDate.now();
+
         // Valider la chronologie des dates
+        /*
         if (!debutDate.isBefore(finDate)) {
             afficherErreur("La date de début doit être antérieure à la date de fin.");
             return;
         }
-
+        //Valider que la date de début choisi n'est pas dans le passé
+        if(debutDate.isBefore(dateToday)){
+            afficherErreur("Vous pouvez pas voyager dans le passé (｡T ω T｡)");
+            return;
+        }*/
         LocalDateTime debutDateTime = debutDate.atStartOfDay();
         LocalDateTime finDateTime = finDate.atStartOfDay();
-
         // Control de saisie -FIN
 
         Voyage update = new Voyage(ID, voyageNom, voyagePrix, voyageDestination, voyageDescription,
@@ -231,24 +268,7 @@ public class ModifierVoyage {
 
     @FXML
     void initialize() {
-        assert Blog_btn != null : "fx:id=\"Blog_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert Event_btn != null : "fx:id=\"Event_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert Home_btn != null : "fx:id=\"Home_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert ListVoyage_btn != null : "fx:id=\"ListVoyage_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert Spot_btn != null : "fx:id=\"Spot_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert TFvoy_description_old != null : "fx:id=\"TFvoy_description_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert TFvoy_destination_old != null : "fx:id=\"TFvoy_destination_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert TFvoy_image_old != null : "fx:id=\"TFvoy_image_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert TFvoy_nom_old != null : "fx:id=\"TFvoy_nom_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert TFvoy_prix_old != null : "fx:id=\"TFvoy_prix_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert VosVoyages_btn != null : "fx:id=\"VosVoyages_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert VoyAjout_date_debut_old != null : "fx:id=\"VoyAjout_date_debut_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert VoyAjout_date_fin_old != null : "fx:id=\"VoyAjout_date_fin_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert VoyType1_old != null : "fx:id=\"VoyType1_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert VoyType2_old != null : "fx:id=\"VoyType2_old\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert modifier_btn != null : "fx:id=\"modifier_btn\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-        assert type_voyage != null : "fx:id=\"type_voyage\" was not injected: check your FXML file 'ModifierVoyage.fxml'.";
-
+        populateCountryComboBox();
     }
 
 }

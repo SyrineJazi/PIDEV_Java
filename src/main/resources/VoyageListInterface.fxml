@@ -44,7 +44,7 @@
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField fx:id="searchVoyage_label" onInputMethodTextChanged="#onSearchVoyage" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@styles.css">
+                        <TextField fx:id="searchVoyage_label" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@styles.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

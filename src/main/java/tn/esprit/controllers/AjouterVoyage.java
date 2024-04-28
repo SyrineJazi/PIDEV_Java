@@ -99,34 +99,48 @@ public class AjouterVoyage {
         String voyageDestination = (String) TFvoy_destination.getValue();
         String voyageDescription = TFvoy_description.getText();
         String voyageImage = TFvoy_image.getText();
-
         LocalDate debutDate = VoyAjout_date_debut.getValue();
         LocalDate finDate = VoyAjout_date_fin.getValue();
 
-        //Verifier si une destination a été séléctionné
-        if (TFvoy_destination.getValue() == null){
-            afficherErreur("Veuillez remplir tous les champs.");
-            return;
+
+        if (voyageNom.isEmpty()){
+            TFvoy_nom.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_nom).play();
         }
-        // Verifier L'input
-        if (voyageNom.isEmpty() || voyagePrixText.isEmpty() ||
-                voyageDescription.isEmpty() || voyageImage.isEmpty() || debutDate == null || finDate == null) {
-            afficherErreur("Veuillez remplir tous les champs.");
-            return;
+        if (TFvoy_destination.getValue() == null){
+            //afficherErreur("Veuillez remplir tous les champs.");
+            TFvoy_destination.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_destination).play();
+        }
+        if(voyageDescription.isEmpty()){
+            TFvoy_description.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_description).play();
+        }
+        if(voyagePrixText.isEmpty()){
+            TFvoy_prix.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_prix).play();
+        }
+        if(voyageImage.isEmpty()){
+            TFvoy_image.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(TFvoy_image).play();
+        }
+        if(debutDate == null){
+            VoyAjout_date_debut.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(VoyAjout_date_debut).play();
+        }
+        if(finDate == null){
+            VoyAjout_date_fin.setStyle("-fx-border-color :red; -fx-border-width: 2px;");
+            new animatefx.animation.Shake(VoyAjout_date_fin).play();
         }
 
         // TFvoy_prix est positive
         int voyagePrix;
-        try {
-            voyagePrix = Integer.parseInt(voyagePrixText);
-            if (voyagePrix <= 0) {
-                afficherErreur("Le prix du voyage doit être un nombre positif.");
+        voyagePrix = Integer.parseInt(voyagePrixText);
+        if (voyagePrix <= 0) {
+            afficherErreur("Le prix du voyage doit être un nombre positif.");
                 return;
             }
-        } catch (NumberFormatException e) {
-            afficherErreur("Le prix du voyage doit être un nombre entier.");
-            return;
-        }
+
 
         LocalDate dateToday = java.time.LocalDate.now();
 
@@ -140,11 +154,8 @@ public class AjouterVoyage {
             afficherErreur("Vous pouvez pas voyager dans le passé (｡T ω T｡)");
             return;
         }
-
         LocalDateTime debutDateTime = debutDate.atStartOfDay();
         LocalDateTime finDateTime = finDate.atStartOfDay();
-
-
         // Control de saisie -FIN
 
         Voyage new_voyage = new Voyage(ID, voyageNom, voyagePrix, voyageDestination, voyageDescription,
@@ -159,6 +170,7 @@ public class AjouterVoyage {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        navigateToAfficherLesVoyages(event);
     }
     @FXML
     private void choisirImage() {

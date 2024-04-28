@@ -8,6 +8,7 @@ module PIDEV.voyage {
     requires java.datatransfer;
     requires java.desktop;
     requires json.simple;
+    requires AnimateFX;
 
     opens tn.esprit.controllers;
 }
