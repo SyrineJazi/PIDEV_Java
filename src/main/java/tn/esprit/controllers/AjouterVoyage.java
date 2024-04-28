@@ -181,15 +181,26 @@ public class AjouterVoyage {
     @FXML
     private void navigateToAfficherLesVoyages(ActionEvent event){
         try {
+
+            FXMLLoader loader = null;
+            Parent root = loader.load(getClass().getResource("/VoyageListInterface.fxml"));
+            Node sourceNode = (Node) event.getSource();
+            Stage stage = (Stage) sourceNode.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            /*
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/VoyageListInterface.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-
             // Fermer la fenêtre actuelle
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+            currentStage.close();*/
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

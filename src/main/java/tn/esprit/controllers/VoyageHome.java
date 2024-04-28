@@ -25,8 +25,8 @@ public class VoyageHome extends Application {
     public void start(Stage primaryStage) {
 
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("/CurrencyConverter.fxml"));
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterVoyage.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeatherForecast.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterVoyage.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("/WeatherForecast.fxml"));
         //FXMLLoader loader = new FXMLLoader(getClass().getResource("/VoyageListInterface.fxml"));
         try
         {

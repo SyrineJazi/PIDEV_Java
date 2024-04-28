@@ -33,6 +33,7 @@
     -fx-border-radius: 5px; /* Rounded corners */
     -fx-border-width: 1px; /* Border width */
     -fx-font-weight: bold;
+    -fx-cursor: hand;
 }
 
 /* CSS for button hover effect */
@@ -56,6 +57,7 @@
 .search-button{
     -fx-background-color: #6DA4AA;
     -fx-background-radius: 30;
+    -fx-cursor: hand;
 }
 
 .right-bar{
@@ -67,7 +69,7 @@
 }
 
 .chosen-fruit-card{
-    -fx-background-color: #F16C31;
+    -fx-background-color: #FFC470;
     -fx-background-radius: 30;
 }
 
@@ -82,15 +84,15 @@
 }
 
 .free-delivery-card{
-    -fx-background-color: #D3D3D3;
+    -fx-background-color: #FFC470;
     -fx-background-radius: 30;
+    -fx-cursor: hand;
 }
-
 .shopping-online-card{
-    -fx-background-color: #BAEAC3;
+    -fx-background-color: #9AC8CD;
     -fx-background-radius: 30;
+    -fx-cursor: hand;
 }
-
 .fruit-item{
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 30;
@@ -110,15 +112,6 @@
 .combo-box .list-cell:hover{
     -fx-background-color: #FFC55A;
 }
-
-
-/*
-.combo-box-base:hover {
--fx-background-color: #B3C8CF;
-}
- */
-
-
 .convert_button {
     -fx-background-color: #6DA4AA; /* Green background */
     -fx-text-fill: white; /* White text color */
@@ -127,6 +120,7 @@
     -fx-border-radius: 5px; /* Rounded corners */
     -fx-border-width: 1px; /* Border width */
     -fx-font-weight: bold;
+    -fx-cursor: hand;
 }
 
 /* CSS for button hover effect */

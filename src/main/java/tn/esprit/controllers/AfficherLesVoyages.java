@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -55,10 +56,17 @@ public class AfficherLesVoyages implements Initializable {
 
     @FXML
     private ImageView voyageimg;
+
+    @FXML
+    private TextField searchVoyage_label;
     @FXML
     private Button VoyEdit_btn;
     @FXML
     private ImageView delete_button;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     ArrayList<Voyage> list_voyages = new ArrayList<>();
     private ObservableList<Voyage> listeObservable_voyages = FXCollections.observableArrayList(getList_voyages());
@@ -88,12 +96,18 @@ public class AfficherLesVoyages implements Initializable {
         return ID;
     }
     @FXML
-    public void OnVoyEdit(ActionEvent event) {
+    private void onSearchVoyage(ActionEvent event) throws ServiceVoyage.ItemNotFoundException {
+        String keyWord = searchVoyage_label.getText();
+        ServiceVoyage sv = new ServiceVoyage();
+        ArrayList<Voyage> foundItems = sv.findByNom_ouDestination(keyWord);
+        listeObservable_voyages = FXCollections.observableArrayList(foundItems);
+        buildGrid();
+    }
+    @FXML
+    public void OnVoyEdit(ActionEvent event) throws IOException {
         // Retrieve the chosen voyage name
         String name = voyageNameLabel.getText();
-
         Voyage chosenvoyage = null; // Declare without initialization
-
         // Loop through the list of voyages to find the chosen voyage
         for (Voyage unit : listeObservable_voyages) {
             if (unit.getNom().equals(name)) {
@@ -102,40 +116,34 @@ public class AfficherLesVoyages implements Initializable {
                 break; // Break out of the loop after finding the voyage
             }
         }
-
         // Check if the chosen voyage was found
         if (chosenvoyage != null) {
             // Pass the chosen voyage to the next page
             System.out.println("IM NAVIGATING");
-            navigateToModifierVoyage(chosenvoyage);
-
+            navigateToModifierVoyage(chosenvoyage,event);
         } else {
             // Handle case where the chosen voyage is not found
             System.out.println("Chosen voyage not found: " + name);
         }
     }
 
-    private void navigateToModifierVoyage(Voyage chosenVoyage) {
+    private void navigateToModifierVoyage(Voyage chosenVoyage, ActionEvent event) throws IOException {
         // Load the FXML file of the next page
         System.out.println("I NAVIGATED");
 
-        FXMLLoader loader;
-        Parent root;
-        try {
-            loader = new FXMLLoader(getClass().getResource("/ModifierVoyage.fxml"));
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-        // Get the controller of the next page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierVoyage.fxml"));
+        root = loader.load();
+
+        // Récupérer le controller de la scene suivante
         ModifierVoyage Controller = loader.getController();
-        // Pass the chosen voyage to the next page controller
+        // Passer chosen voyage au controller suivant
         Controller.getNameToSearchWith(chosenVoyage);
         Controller.setData(chosenVoyage);
-        // Display the next page
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        //montrer la page suivante
+        Node sourceNode = (Node) event.getSource();
+        stage = (Stage) sourceNode.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
     @FXML
@@ -152,14 +160,45 @@ public class AfficherLesVoyages implements Initializable {
             e.printStackTrace();
             return;
         }
+
+        Node sourceNode = (Node) event.getSource();
+        stage = (Stage) sourceNode.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private void navigateToConvertisseurChange(MouseEvent event) {
+        System.out.println("I NAVIGATED");
+        FXMLLoader loader;
+        Parent root;
+        try {
+            loader = new FXMLLoader(getClass().getResource("/CurrencyConverter.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
-        /*
-        Stage currentStage = (Stage) root.getScene().getWindow();
-        currentStage.close();
 
-         */
+    }
+    @FXML
+    private void navigateToWeatherForecast(MouseEvent event) {
+        System.out.println("I NAVIGATED");
+        FXMLLoader loader;
+        Parent root;
+        try {
+            loader = new FXMLLoader(getClass().getResource("/WeatherForecast.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
@@ -197,7 +236,6 @@ public class AfficherLesVoyages implements Initializable {
             else{
                 alert.close();
             }
-
         } else {
             // Handle case where the chosen voyage is not found
             System.out.println("Chosen voyage not found: " + name);

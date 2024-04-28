@@ -100,7 +100,11 @@ public class ModifierVoyage {
         TFvoy_prix_old.setText(String.valueOf(voyage.getPrix()));
         VoyAjout_date_debut_old.setValue(voyage.getDate_debut().toLocalDate());
         VoyAjout_date_fin_old.setValue(voyage.getDate_fin().toLocalDate());
-        VoyType1_old.isSelected();
+        if(voyage.getType().equals("Touristique")) {
+            VoyType1_old.setSelected(true);
+        }else if(voyage.getType().equals("Humanitaire") ){
+            VoyType2_old.setSelected(true);
+        }
         System.out.println("WE ARE PUTTING STUFF HERE");
     }
 
@@ -185,6 +189,9 @@ public class ModifierVoyage {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //Retour à la liste
+        navigateToAfficherLesVoyages(event);
+
     }
 
     private void afficherErreur(String message)
@@ -212,13 +219,11 @@ public class ModifierVoyage {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/VoyageListInterface.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Node sourceNode = (Node) event.getSource();
+            Stage stage = (Stage) sourceNode.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
-
-            // Fermer la fenêtre actuelle
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
