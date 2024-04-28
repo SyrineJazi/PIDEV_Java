@@ -188,6 +188,24 @@ public class ServiceVoyage implements IService<Voyage>{
         voyages.sort(byType.thenComparing(byName).thenComparing(byDestination));
         return voyages;
     }
+    public ArrayList<Voyage> trierVoyageParNom() {
+        Comparator<Voyage> byName = Comparator.comparing(Voyage::getNom);
+        ArrayList<Voyage> voyages = this.getAll();
+        voyages.sort(byName);
+        return voyages;
+    }
+    public ArrayList<Voyage> trierVoyageParType() {
+        Comparator<Voyage> byType = Comparator.comparing(Voyage::getType);
+        ArrayList<Voyage> voyages = this.getAll();
+        voyages.sort(byType);
+        return voyages;
+    }
+    public ArrayList<Voyage> trierVoyageParPrix() {
+        Comparator<Voyage> byPrix = Comparator.comparing(Voyage::getPrix);
+        ArrayList<Voyage> voyages = this.getAll();
+        voyages.sort(byPrix);
+        return voyages;
+    }
 
 
 }

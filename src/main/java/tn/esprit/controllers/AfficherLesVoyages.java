@@ -1,5 +1,7 @@
 package tn.esprit.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,11 +60,20 @@ public class AfficherLesVoyages implements Initializable {
     private ImageView voyageimg;
 
     @FXML
+    private Button reload_btn;
+    @FXML
+    private Button backArrow;
+
+    @FXML
     private TextField searchVoyage_label;
     @FXML
     private Button VoyEdit_btn;
     @FXML
     private ImageView delete_button;
+    @FXML
+    private ComboBox<String> sorting_methods_comboBOX;
+    @FXML
+    private Button voyageSort_btn;
 
     private Stage stage;
     private Scene scene;
@@ -101,6 +112,32 @@ public class AfficherLesVoyages implements Initializable {
         ServiceVoyage sv = new ServiceVoyage();
         ArrayList<Voyage> foundItems = sv.findByNom_ouDestination(keyWord);
         listeObservable_voyages = FXCollections.observableArrayList(foundItems);
+        buildGrid();
+    }
+    private void onSearchVoyageLabel() throws ServiceVoyage.ItemNotFoundException {
+        String keyWord = searchVoyage_label.getText();
+        ServiceVoyage sv = new ServiceVoyage();
+        ArrayList<Voyage> foundItems = sv.findByNom_ouDestination(keyWord);
+        listeObservable_voyages = FXCollections.observableArrayList(foundItems);
+        buildGrid();
+    }
+    @FXML
+    private void onTrierVoyage(ActionEvent event){
+        ServiceVoyage sv = new ServiceVoyage();
+        ArrayList<Voyage> sortedItems = new ArrayList<>();
+        String sortingMethod = sorting_methods_comboBOX.getSelectionModel().getSelectedItem();
+        switch(sortingMethod){
+            case "Par Type" :
+                sortedItems = sv.trierVoyageParType();
+                break;
+            case "Par Nom" :
+                sortedItems = sv.trierVoyageParNom();
+                break;
+            case "Par Prix" :
+                sortedItems = sv.trierVoyageParPrix();
+                break;
+        }
+        listeObservable_voyages = FXCollections.observableArrayList(sortedItems);
         buildGrid();
     }
     @FXML
@@ -283,6 +320,7 @@ public class AfficherLesVoyages implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Construire la grille
      if(!listeObservable_voyages.isEmpty()){
          setChosenVoyage(listeObservable_voyages.get(0));
          myListener = new MyListener(){
@@ -293,6 +331,31 @@ public class AfficherLesVoyages implements Initializable {
          };
      }
      buildGrid();
+     //Initialiser le combo box de Tri
+     sorting_methods_comboBOX.setPromptText("Trier les voyages selon...");
+     sorting_methods_comboBOX.getItems().addAll("Par Type", "Par Nom","Par Prix");
+
+     //Initialiser les boutons
+        ImageView backarrow = new ImageView(getClass().getResource("/img/back.png").toExternalForm());
+        backArrow.setGraphic(backarrow);
+        ImageView reloadbtn = new ImageView(getClass().getResource("/img/reload.png").toExternalForm());
+        reload_btn.setGraphic(reloadbtn);
+
+        //dynamic search
+        searchVoyage_label.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                try {
+                    onSearchVoyageLabel();
+                } catch (ServiceVoyage.ItemNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+
+
+
     }
 
 
