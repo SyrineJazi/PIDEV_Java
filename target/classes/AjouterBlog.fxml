@@ -39,10 +39,10 @@
                </Label>
                <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@../../../../PIDEV_Java-Voyage/src/main/resources/img/blog_icon.png" />
+                     <Image url="@/img/blog_icon.png" />
                   </image>
                </ImageView>
-               <Button fx:id="Blog_btn" mnemonicParsing="false" onAction="#navigateToListBlogs" prefHeight="41.0" prefWidth="160.0" styleClass="nav_btn" stylesheets="@../../../../PIDEV_Java-Voyage/src/main/resources/styles.css" text="Blogs" textFill="#3a5965">
+               <Button fx:id="Blog_btn" mnemonicParsing="false" onAction="#navigateToListBlogs" prefHeight="41.0" prefWidth="160.0" styleClass="nav_btn" stylesheets="@styles.css" text="Blogs" textFill="#3a5965">
                   <font>
                      <Font size="19.0" />
                   </font>
@@ -60,7 +60,7 @@
                    <TextField fx:id="description" />
                    <Label text="image" />
                    <TextField fx:id="imageb" />
-                   <Button mnemonicParsing="false" onAction="#addphoto" text="Ajouter une image" />
+                  <Button mnemonicParsing="false" onAction="#addphoto" text="Ajouter une image" />
                    <TableView fx:id="table" onMouseClicked="#getData" prefHeight="216.0" prefWidth="740.0">
                        <columns>
                            <TableColumn fx:id="colid" prefWidth="75.0" text="id" />

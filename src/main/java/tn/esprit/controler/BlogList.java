@@ -24,7 +24,32 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+import tn.esprit.interfaces.MyListener;
+import tn.esprit.models.Blog;
+import tn.esprit.services.BlogService;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 public class BlogList implements Initializable {
 
     @FXML
@@ -90,9 +115,9 @@ public class BlogList implements Initializable {
         int column = 0;
         int row = 1;
         try {
-            for (Blog blog : blogs) {   FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/cardblogs.fxml")); // Assurez-vous que le chemin est correct
+            for (Blog blog : blogs) {    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cardblogs.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
+
 
                 Cardblogs controller = fxmlLoader.getController();
                 controller.setData(blog, myListener); // Assurez-vous que BlogItem a une méthode setData appropriée
@@ -142,6 +167,8 @@ public class BlogList implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        BlogService blogService = new BlogService();
+        blogs.addAll(blogService.getAll());
         if (!blogs.isEmpty()) {
            setChosenBlog(blogs.get(0)); // Définir le premier blog comme choisi, ou effectuer toute autre initialisation nécessaire
             myListener = new MyListener() {

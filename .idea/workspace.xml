@@ -5,55 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f56d61b-5caa-4e91-b81f-54a428a44168" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/Blogs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/Cardblogs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/interfaces/MyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/blogs.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cardblogs.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/airplane_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/blog_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/clear.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/cloudy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/converting_money.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/curencyIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/home_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/ic_cart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-add-100 (1).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-add-100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-add-50.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-delete-24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-empty-trash-100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-empty-trash-50.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-money-100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-upload-24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icons8-upload.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/moneybag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/rainy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/reload.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/snowy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/traveler_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/water-drop_3105761.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/wind_136570.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/interfaces/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/interfaces/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/models/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/models/Blog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BlogService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterBlog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterBlog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cardblogs.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cardblogs.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/AjouterBlog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AjouterBlog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/AjouterBlog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/AjouterBlog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/models/Blog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/models/Blog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/services/BlogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/services/BlogService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,25 +49,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "blog__java",
-    "last_opened_file_path": "C:/Users/razan/OneDrive - ESPRIT/Bureau/blog-pi/src/main/resources",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;blog__java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/razan/OneDrive - ESPRIT/Bureau/blog-pi/src/main/resources&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="tn.esprit.controler" />
@@ -158,7 +123,8 @@
       <workItem from="1713668263068" duration="47585000" />
       <workItem from="1714039665048" duration="538000" />
       <workItem from="1714156261058" duration="40000" />
-      <workItem from="1714241451899" duration="53950000" />
+      <workItem from="1714241451899" duration="55934000" />
+      <workItem from="1714405256293" duration="5438000" />
     </task>
     <servers />
   </component>

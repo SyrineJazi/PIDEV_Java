@@ -2,21 +2,18 @@ package tn.esprit.services;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
 import tn.esprit.controler.Blogs;
-import tn.esprit.controler.Cardblogs;
+import tn.esprit.interfaces.IService;
 import tn.esprit.models.Blog;
 import tn.esprit.utils.MyDataBase;
 
-import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.SQLException;
 import java.sql.Connection;
-public class BlogService {
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class BlogService implements IService<Blog> {
     private ObservableList<Blogs>blogs = FXCollections.observableArrayList();
 
     private static Connection cnx;
@@ -24,10 +21,27 @@ public class BlogService {
     public BlogService() {
         cnx = MyDataBase.getInstance().getCnx();
     }
+    public Blog saisie() {
+        String titre, content, imageb;
+        Date date;
 
-    public boolean add(Blog b) {
-        boolean success = false;
-        String insert = "INSERT INTO blog (titre, content, imageb, date,favoris) VALUES (?, ?, ?, ?,?)";
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Titre :");
+        titre = scanner.nextLine();
+        System.out.println("Contenu :");
+        content = scanner.nextLine();
+        System.out.println("Image :");
+        imageb = scanner.nextLine();
+        System.out.println("Date (YYYY-MM-DD) :");
+        String dateString = scanner.nextLine();
+        date = Date.valueOf(dateString);
+
+        return new Blog(titre, content, imageb, date);
+    }
+
+    public void add(Blog b) {
+        String insert = "INSERT INTO blog (titre, content, imageb, date, favoris) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement pstm = cnx.prepareStatement(insert);
             pstm.setString(1, b.getTitre());
@@ -37,19 +51,19 @@ public class BlogService {
             pstm.setBoolean(5, b.isFavoris());
 
             int rowsAffected = pstm.executeUpdate();
-             if (rowsAffected > 0) {
-                System.out.println("Post ajouté avec succès !");//
-                success = true;
+            if (rowsAffected > 0) {
+                System.out.println("Post ajouté avec succès !");
             } else {
                 System.out.println("Échec de l'ajout du post.");
             }
         } catch (SQLException e) {
             System.out.println("Erreur SQL : " + e.getMessage());
         }
-        return success;
     }
-    public ObservableList<Blog> getAll() {
-        ObservableList<Blog> blogs = FXCollections.observableArrayList();
+
+    @Override
+    public ArrayList<Blog> getAll() {
+        ArrayList<Blog> blogs = new ArrayList<>();
         String qry = "SELECT * FROM blog";
         try (Statement stm = cnx.createStatement();
              ResultSet rs = stm.executeQuery(qry)) {
@@ -62,12 +76,27 @@ public class BlogService {
                 blog.setImageb(rs.getString("imageb"));
                 blog.setDate(rs.getDate("date"));
                 blogs.add(blog);
-                //System.out.print(blogs);
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la récupération des blogs : " + e.getMessage());
         }
         return blogs;
+    }
+    @Override
+    public void displayAll(ArrayList<Blog> items) {
+        for (Blog b : items) {
+            System.out.println("ID: " + b.getId());
+            System.out.println("Titre: " + b.getTitre());
+            System.out.println("Date: " + b.getDate());
+            System.out.println("Contenu: " + b.getContent());
+            System.out.println("Image: " + b.getImageb());
+            System.out.println();
+        }
+    }
+    public static class ItemNotFoundException extends Exception {
+        public ItemNotFoundException(String message) {
+            super(message);
+        }
     }
 
 
@@ -92,7 +121,7 @@ public class BlogService {
             System.out.println(ex.getMessage()); }
 
     }
-    public void delete(Blog b) {
+    public boolean delete(Blog b) {
 
             String delete = "delete from blog  where id = ?";
         try {
@@ -106,5 +135,6 @@ pstm.executeUpdate();
             throw new RuntimeException(e);
         }
 
+        return false;
     }
 }

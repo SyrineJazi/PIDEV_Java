@@ -1,5 +1,7 @@
 package tn.esprit.interfaces;
 
+import tn.esprit.models.Blog;
+
 import java.util.ArrayList;
 
 public interface IService<T> {
@@ -7,7 +9,9 @@ public interface IService<T> {
         void add (T t );
         ArrayList<T> getAll();
 
-        void update(T t );
+    void displayAll(ArrayList<Blog> items);
+
+    void update(T t );
         boolean delete (T t);
 //findby..
 

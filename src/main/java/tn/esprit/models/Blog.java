@@ -25,6 +25,10 @@ public class Blog extends Blogs {
         this.favoris = favoris;
     }
 
+    public Blog(String titre, String content, String imageb, java.sql.Date date) {
+
+    }
+
     public static void setImageP(String i) {
 
     }

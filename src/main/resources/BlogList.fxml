@@ -146,25 +146,7 @@
                         </HBox>
                         <Pane prefHeight="61.0" prefWidth="103.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
-                                 <children>
-                                    <Label prefHeight="30.0" prefWidth="171.0" text="Ajouter une activité" textFill="#92c79d">
-                                       <font>
-                                          <Font name="Cambria Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <ImageView fitHeight="49.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@img/icons8-add-100 (1).png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets right="15.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                           </children>
+                           
                         </HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
                      </children>
