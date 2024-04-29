@@ -8,7 +8,6 @@ public class Main {
 
         Date now = new Date();
 
-        // Utilisation de la méthode getTime() pour obtenir le timestamp en millisecondes
         long timestamp = now.getTime();
 
 

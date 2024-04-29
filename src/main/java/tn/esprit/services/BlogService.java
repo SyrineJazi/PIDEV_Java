@@ -4,14 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import tn.esprit.controler.Blogs;
+import tn.esprit.controler.Cardblogs;
 import tn.esprit.models.Blog;
 import tn.esprit.utils.MyDataBase;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.Connection;
 public class BlogService {
+    private ObservableList<Blogs>blogs = FXCollections.observableArrayList();
 
     private static Connection cnx;
 
@@ -63,6 +69,8 @@ public class BlogService {
         }
         return blogs;
     }
+
+
     public void update(Blog b) {
         try {
             String req = "update blog  set titre =? , content =? ,imageb=? where id=?";

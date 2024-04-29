@@ -37,12 +37,23 @@
                        <Font name="System Bold" size="18.0" />
                    </font>
                </Label>
+               <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.6" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../PIDEV_Java-Voyage/src/main/resources/img/blog_icon.png" />
+                  </image>
+               </ImageView>
+               <Button fx:id="Blog_btn" mnemonicParsing="false" onAction="#navigateToListBlogs" prefHeight="41.0" prefWidth="160.0" styleClass="nav_btn" stylesheets="@../../../../PIDEV_Java-Voyage/src/main/resources/styles.css" text="Blogs" textFill="#3a5965">
+                  <font>
+                     <Font size="19.0" />
+                  </font>
+               </Button>
                <!-- Ajoutez ici d'autres éléments de la sidebar si nécessaire -->
            </VBox>
        </left>            <center>
        <!-- Contenu central -->
            <VBox prefHeight="656.0" prefWidth="740.0" stylesheets="@styles.css">
                <children>
+                  <TextField fx:id="searchField" onAction="#search" />
                    <Label text="titre" />
                    <TextField fx:id="titre" />
                    <Label text="description" />
