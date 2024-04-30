@@ -1,0 +1,142 @@
+.primary-color{
+    -fx-background-color: #6DA4AA;
+}
+.secondary-color{
+    -fx-background-color: white;
+}
+
+.sidebar_hbox {
+    -fx-background-color: transparent; /* Default background color */
+    -fx-padding: 10px; /* Padding around the content */
+    /*-fx-border-color: #647D87; /* Border color */
+    -fx-border-width: 2px; /* Border width */
+}
+
+.sidebar_hbox:hover {
+    -fx-background-color: #ACE2E1; /* Background color on hover */
+}
+/* CSS for button styling */
+.button {
+    -fx-background-color: #6DA4AA; /* Green background */
+    -fx-text-fill: white; /* White text color */
+    -fx-font-size: 14px; /* Font size */
+    -fx-padding: 10px 20px; /* Padding */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-border-width: 1px; /* Border width */
+}
+
+/* CSS for button hover effect */
+.button:hover {
+    -fx-background-color: #ACE2E1; /* Darker green background on hover */
+    -fx-text-fill: #6DA4AA;
+}
+/* CSS pour la table dans une grande dimension */
+
+@media only screen and (min-width: 1200px) {
+    .table {
+        /* Ajoutez ici les styles spécifiques à la table lorsque la fenêtre est agrandie */
+        /* Par exemple */
+        -fx-font-size: 160px;
+    }
+}
+.custom-table {
+    /* Ajoutez ici vos styles personnalisés pour la TableView */
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-text-fill: #000000; /* Couleur du texte */
+}
+
+.custom-table .column-header-background {
+    /* Styles spécifiques à l'en-tête des colonnes */
+    -fx-background-color: #6DA4AA; /* Couleur de fond de l'en-tête */
+    -fx-text-fill: #ffffff; /* Couleur du texte de l'en-tête */
+}
+
+.custom-table .column-header {
+    /* Styles spécifiques au texte de l'en-tête des colonnes */
+    -fx-font-weight: bold; /* Texte en gras */
+}
+
+.custom-table .table-row-cell {
+    /* Styles spécifiques aux cellules de la table */
+    -fx-background-color: #f3f3f3; /* Couleur de fond des cellules */
+}
+
+.custom-table .table-row-cell:selected {
+    /* Styles spécifiques aux cellules sélection
+/* Définition des styles pour la TableView */
+    .custom-table {
+        -fx-background-color: white; /* Couleur de fond */
+        -fx-border-color: #3a5965; /* Couleur de la bordure */
+        -fx-border-width: 2px; /* Largeur de la bordure */
+    }
+
+    /* Définition des styles pour les cellules de la TableView */
+    .table-cell {
+        -fx-text-fill: black; /* Couleur du texte */
+        -fx-alignment: center; /* Alignement du texte */
+        -fx-font-size: 14px; /* Taille de la police */
+    }
+
+    /* Style pour la cellule sélectionnée */
+    .table-cell:selected {
+        -fx-background-color: #6DA4AA; /* Couleur de fond de la cellule sélectionnée */
+        -fx-text-fill: white; /* Couleur du texte de la cellule sélectionnée */
+    }
+
+
+
+/* affichage CSS */
+
+    .search-box {
+        -fx-background-color: #FFFFFF;
+        -fx-background-radius: 100;
+    }
+
+    .transparent {
+        -fx-background-color: rgba(0, 0, 0, 0);
+    }
+
+    .search-button {
+        -fx-background-color: #6DA4AA;
+        -fx-background-radius: 30;
+    }
+
+    .right-bar {
+        -fx-background-color: #D3D3D3;
+    }
+
+    .shadow {
+        -fx-effect: dropShadow(three-pass-box, rgba(0, 0, 0, 0.1), 10.0, 0.0, 0.0, 10.0);
+    }
+
+    .chosen-fruit-card {
+        -fx-background-color: #F16C31;
+        -fx-background-radius: 30;
+    }
+
+    .comboBox {
+        -fx-background-color: rgba(255, 255, 255, 0.3);
+        -fx-background-radius: 30;
+    }
+
+    .add-btn {
+        -fx-background-color: #FFFFFF;
+        -fx-background-radius: 100;
+    }
+
+    .free-delivery-card {
+        -fx-background-color: #D3D3D3;
+        -fx-background-radius: 30;
+    }
+
+    .shopping-online-card {
+        -fx-background-color: #BAEAC3;
+        -fx-background-radius: 30;
+    }
+
+    .fruit-item {
+        -fx-background-color: #FFFFFF;
+        -fx-background-radius: 30;
+    }
+}

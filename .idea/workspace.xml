@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f56d61b-5caa-4e91-b81f-54a428a44168" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BlogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BlogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterBlog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterBlog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AjouterBlog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AjouterBlog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/AjouterBlog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/AjouterBlog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/services/BlogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/services/BlogService.class" afterDir="false" />
-    </list>
+    <list default="true" id="0f56d61b-5caa-4e91-b81f-54a428a44168" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +109,7 @@
       <workItem from="1714039665048" duration="538000" />
       <workItem from="1714156261058" duration="40000" />
       <workItem from="1714241451899" duration="55934000" />
-      <workItem from="1714405256293" duration="9032000" />
+      <workItem from="1714405256293" duration="9144000" />
     </task>
     <servers />
   </component>
