@@ -60,7 +60,11 @@
                    <TextField fx:id="description" />
                    <Label text="image" />
                    <TextField fx:id="imageb" />
-                  <Button mnemonicParsing="false" onAction="#addphoto" text="Ajouter une image" />
+                  <ImageView fitHeight="25.0" fitWidth="33.0" onMousePressed="#choisirImage" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../PIDEV_Java-Voyage/src/main/resources/img/icons8-upload-24.png" />
+                     </image>
+                  </ImageView>
                    <TableView fx:id="table" onMouseClicked="#getData" prefHeight="216.0" prefWidth="740.0">
                        <columns>
                            <TableColumn fx:id="colid" prefWidth="75.0" text="id" />

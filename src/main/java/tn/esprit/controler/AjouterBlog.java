@@ -54,16 +54,16 @@ public class AjouterBlog {
     private Button btnadd;
 
     private ObservableList<Blog> blogs = FXCollections.observableArrayList();
-    @FXML
+
+   @FXML
     void choisirImage(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             String imagePath = file.toURI().toString();
-            Image image = new Image(imagePath);
-            //imageviewFile.setImage(image);
-           imageb.setText(file.getAbsolutePath());
+            imageb.setText(file.getAbsolutePath());
+
         }
     }
     @FXML
@@ -84,16 +84,7 @@ public class AjouterBlog {
         table.setItems(sortedBlogs);
     }
 
-    @FXML
-    private void choisirImage() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir une image");
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            String imagePath = file.toURI().toString();
-            imageb.setText(file.getAbsolutePath());
-        }
-    }
+
 
     @FXML
     void navigateToListBlogs(ActionEvent event) {
@@ -115,40 +106,7 @@ public class AjouterBlog {
         showBlog();
     }
 
-    @FXML
-    void ajouterBlog(ActionEvent event) {
-        BlogService service = new BlogService();
 
-        Random random = new Random();
-        int ID = random.nextInt(Integer.MAX_VALUE) + 1;
-
-        String titreText = titre.getText();
-        String descriptionText = description.getText();
-        String imagebText = imageb.getText();
-
-        if (titreText.isEmpty() || descriptionText.isEmpty() || imagebText.isEmpty()) {
-            afficherErreur("Veuillez remplir tous les champs.");
-            return;
-        }
-
-        if (descriptionText.length() < 5) {
-            afficherErreur("La description doit avoir au moins 5 caractères.");
-            return;
-        }
-
-        Date currentDate = new Date();
-        Blog blog = new Blog(ID, titreText, descriptionText, imagebText, currentDate, true);
-        blog.setFavoris(false);
-
-        service.add(blog);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Le blog a été ajouté avec succès.");
-        alert.show();
-
-        // Rafraîchir la liste des blogs
-        showBlog();
-    }
 
     private void afficherErreur(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -209,13 +167,51 @@ public class AjouterBlog {
         }
     }
 
-    public void addPhoto(ActionEvent actionEvent) {
-        choisirImage();
-    }
 
-    public void addphoto(ActionEvent actionEvent) {
-    }
+
+
 
     public void ajouterblog(ActionEvent actionEvent) {
+
+            // Créer un ID aléatoire pour le nouveau blog
+            Random random = new Random();
+            int ID = random.nextInt(Integer.MAX_VALUE) + 1;
+
+
+        String file = imageb.getText();
+
+        if (!Files.exists(Paths.get(file))) {
+            afficherErreur("Le fichier spécifié n'existe pas.");
+            return;
+        }
+            // Récupérer les données du formulaire
+            String titreText = titre.getText();
+            String descriptionText = description.getText();
+            String imagebText = imageb.getText();
+
+
+
+
+
+            // Créer un objet Blog avec les données saisies
+            Date currentDate = new Date();
+            Blog blog = new Blog(ID, titreText, descriptionText, imagebText, currentDate, true);
+            blog.setFavoris(false);
+
+            // Ajouter le blog à la base de données
+            try {
+                BlogService service = new BlogService();
+                service.add(blog);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Le blog a été ajouté avec succés.");
+                alert.show();
+                showBlog();
+            } catch (Exception e) {
+                afficherErreur("Une erreur s'est produite lors de l'ajout du blog : " + e.getMessage());
+                e.printStackTrace();
+            }
+
     }
+
+
 }

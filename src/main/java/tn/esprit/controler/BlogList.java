@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -153,13 +154,13 @@ public class BlogList implements Initializable {
         // Vérifiez si le fichier image existe
         if (imageFile.exists()) {
             // Chargez l'image depuis le fichier
-           //  image = new Image(imageFile.toURI().toString());
-           // image.setImage(image); // Assurez-vous d'avoir une référence à l'élément correspondant dans votre FXML pour afficher l'image
+            Image image = new Image(imageFile.toURI().toString());
+         //   image.setImage(image); // Assurez-vous d'avoir une référence à l'élément correspondant dans votre FXML pour afficher l'image
            // chosenBlogCard.setStyle("-fx-background-color: #eef4f3" + ";\n" +
-                  //  "    -fx-background-radius: 30;");
+                   // "    -fx-background-radius: 30;");
         } else {
-            // Gérez le cas où le fichier image n'est pas trouvé
-           // System.out.println("Image file not found: " + blog.getImageb());
+           //  Gérez le cas où le fichier image n'est pas trouvé
+            System.out.println("Image file not found: " + blog.getImageb());
             // Vous pouvez éventuellement définir une image par défaut ou gérer la situation différemment
         }
         return ID;

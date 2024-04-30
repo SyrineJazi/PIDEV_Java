@@ -49,7 +49,7 @@ public class BlogService implements IService<Blog> {
             pstm.setString(3, b.getImageb());
             pstm.setDate(4, new java.sql.Date(b.getDate().getTime()));
             pstm.setBoolean(5, b.isFavoris());
-
+            pstm.executeUpdate();
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Post ajouté avec succès !");
