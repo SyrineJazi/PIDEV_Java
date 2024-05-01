@@ -31,6 +31,9 @@ public class Cardblogs {
 
     private Blog blog;
 
+    public static void setStyle(String s) {
+    }
+
     public void setData(Blog blog, MyListener myListener) {
         this.blog = blog;
         this.myListener = myListener;

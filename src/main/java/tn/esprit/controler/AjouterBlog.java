@@ -7,6 +7,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -89,13 +90,14 @@ public class AjouterBlog {
     @FXML
     void navigateToListBlogs(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BlogList.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
+            FXMLLoader loader = null;
+            Parent root = loader.load(getClass().getResource("/BlogList.fxml"));
+            Node sourceNode = (Node) event.getSource();
+            Stage stage = (Stage) sourceNode.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Fermer la fenêtre actuelle
+
             stage.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -202,6 +204,7 @@ public class AjouterBlog {
             try {
                 BlogService service = new BlogService();
                 service.add(blog);
+                service.update(blog);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Le blog a été ajouté avec succés.");
                 alert.show();
@@ -209,7 +212,7 @@ public class AjouterBlog {
             } catch (Exception e) {
                 afficherErreur("Une erreur s'est produite lors de l'ajout du blog : " + e.getMessage());
                 e.printStackTrace();
-            }
+            };
 
     }
 

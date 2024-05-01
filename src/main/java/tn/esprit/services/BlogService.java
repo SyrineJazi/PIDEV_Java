@@ -39,6 +39,28 @@ public class BlogService implements IService<Blog> {
 
         return new Blog(titre, content, imageb, date);
     }
+    public ArrayList<Blog> searchByTitle(String title) {
+        ArrayList<Blog> searchResults = new ArrayList<>();
+        String query = "SELECT * FROM blog WHERE titre LIKE ?";
+        try {
+            PreparedStatement pstm = cnx.prepareStatement(query);
+            pstm.setString(1, "%" + title + "%");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Blog blog = new Blog();
+                blog.setId(rs.getInt("id"));
+                blog.setTitre(rs.getString("titre"));
+                blog.setDate(rs.getDate("date"));
+                blog.setContent(rs.getString("content"));
+                blog.setImageb(rs.getString("imageb"));
+                searchResults.add(blog);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la recherche par titre : " + e.getMessage());
+        }
+        return searchResults;
+    }
+
 
     public void add(Blog b) {
         String insert = "INSERT INTO blog (titre, content, imageb, date, favoris) VALUES (?, ?, ?, ?, ?)";

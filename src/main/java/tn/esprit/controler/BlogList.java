@@ -10,9 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +22,8 @@ import tn.esprit.models.Blog;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -75,15 +74,61 @@ public class BlogList implements Initializable {
     private GridPane grid;
 
     @FXML
+    private TextField onsearchbloglabel;
+    @FXML
     private ScrollPane scroll;
 
     @FXML
+    private TextField searchTextField;
+    @FXML
     private Label titre;
-    private ObservableList<Blog> blogs = FXCollections.observableArrayList();
-
+    private ObservableList<Blog> blogs = FXCollections.observableArrayList(getList_blogs());
+    private ArrayList<Blog> getList_blogs(){
+        BlogService sv = new BlogService();
+        return sv.getAll();
+    }
     private MyListener myListener;
+
+
     @FXML
     void deleteblog(MouseEvent event) {
+        // Retrieve the chosen voyage name
+        String name = titre.getText();
+
+        Blog chosenblog = null; // Declare without initialization
+        // Loop through the list of voyages to find the chosen voyage
+        for (Blog unit : blogs) {
+            if (unit.getTitre().equals(name)) {
+                chosenblog = unit; // Assign the found voyage
+                System.out.println("the thing worked");
+                break; // Break out of the loop after finding the voyage
+            }
+        }
+        // Check if the chosen voyage was found
+        if (chosenblog != null) {
+            // Pass the chosen voyage to the next page
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de la suppression");
+            alert.setContentText("Etes-vous sûre de vouloir supprimer cet item ?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                System.out.println("IM deleting");
+               BlogService sv = new BlogService();
+                sv.delete(chosenblog);
+
+                // Update the observable list by removing the deleted voyage
+               blogs.remove(chosenblog);
+                // Update the UI by rebuilding the grid
+                buildGrid();
+
+            }
+            else{
+                alert.close();
+            }
+        } else {
+            // Handle case where the chosen voyage is not found
+            System.out.println("Chosen blog not found: " + name);
+        }
 
     }
 
@@ -155,9 +200,9 @@ public class BlogList implements Initializable {
         if (imageFile.exists()) {
             // Chargez l'image depuis le fichier
             Image image = new Image(imageFile.toURI().toString());
-         //   image.setImage(image); // Assurez-vous d'avoir une référence à l'élément correspondant dans votre FXML pour afficher l'image
-           // chosenBlogCard.setStyle("-fx-background-color: #eef4f3" + ";\n" +
-                   // "    -fx-background-radius: 30;");
+          blogimg.setImage(image); // Assurez-vous d'avoir une référence à l'élément correspondant dans votre FXML pour afficher l'image
+           Cardblogs.setStyle("-fx-background-color: #eef4f3" + ";\n" +
+                    "    -fx-background-radius: 30;");
         } else {
            //  Gérez le cas où le fichier image n'est pas trouvé
             System.out.println("Image file not found: " + blog.getImageb());
@@ -183,8 +228,69 @@ public class BlogList implements Initializable {
     }
 
     @FXML
-    void onblogedit(ActionEvent event) {
+    void onblogedit(ActionEvent event) throws IOException{
+        String name = titre.getText();
+        Blog chosenblog = null;
+        for (Blog unit : blogs) {
+            if (unit.getTitre().equals(name)) {
+                chosenblog = unit;
+                System.out.println("modidffff avec succes ");
+                break;
+            }}
+        if (chosenblog != null) {
+            System.out.println("IM NAVIGATING");
+            navigateToAjouterblog(chosenblog,  event );
 
+        }else { System.out.println("Chosen blog not found: " + name);
     }
+}
 
+    private void navigateToAjouterblog(Blog chosenblog, ActionEvent event) {
+
+        System.out.println("Je navigue");
+
+        FXMLLoader loader;
+        Parent root;
+        try {
+            loader = new FXMLLoader(getClass().getResource("/AjouterBlog.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    public ArrayList<Blog> findByNom_ouDestination(String nom) throws BlogService.ItemNotFoundException {
+        ArrayList<Blog> liste_des_blogs = this.getList_blogs();
+        ArrayList<Blog> found_items = new ArrayList<>();
+        Iterator<Blog> itr = liste_des_blogs.iterator();
+        while (itr.hasNext()) {
+            Blog blog = itr.next();
+            if (blog.getTitre().toLowerCase().contains(nom) ){
+                found_items.add(blog);
+            }
+        }
+        if (found_items.isEmpty()) {
+            throw new BlogService.ItemNotFoundException("Le blog du nom ou destination " + nom + " n'existe pas.");
+        }
+        return found_items;
+    }
+    @FXML
+    void onsearchvoyage(ActionEvent event) throws BlogService.ItemNotFoundException {
+            String keyWord = onsearchbloglabel.getText();
+           BlogService sv = new BlogService();
+            ArrayList<Blog> foundItems = sv.searchByTitle(keyWord);
+            blogs = FXCollections.observableArrayList(foundItems);
+            buildGrid();
+        }
+
+    private void setOnsearchbloglabel() throws BlogService.ItemNotFoundException {
+        String keyWord = onsearchbloglabel.getText();
+        BlogService sv = new BlogService();
+        ArrayList<Blog> foundItems = sv.searchByTitle(keyWord);
+       blogs = FXCollections.observableArrayList(foundItems);
+        buildGrid();
+    }
 }
