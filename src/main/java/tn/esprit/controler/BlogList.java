@@ -284,6 +284,7 @@ public class BlogList implements Initializable {
             ArrayList<Blog> foundItems = sv.searchByTitle(keyWord);
             blogs = FXCollections.observableArrayList(foundItems);
             buildGrid();
+            
         }
 
     private void setOnsearchbloglabel() throws BlogService.ItemNotFoundException {
