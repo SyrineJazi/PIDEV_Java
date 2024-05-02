@@ -327,6 +327,8 @@ public class BlogList implements Initializable {
 
                 blogService.update(chosenBlog);
 
+                ArrayList<Blog> blogArrayList = new ArrayList<>(blogs);
+                blogService.displayAll(blogArrayList);
                 // Optionally, provide feedback to the user
                 System.out.println("Blog ajouté aux favoris avec succès !");
             } else {

@@ -193,7 +193,7 @@ pstm.executeUpdate();
 
         try {
 
-            String query = "UPDATE blogs SET favoris = ? WHERE id = ?";
+            String query = "UPDATE blog SET favoris = ? WHERE id = ?";
             ps = cnx.prepareStatement(query);
             ps.setBoolean(1, true); // true pour ajouter aux favoris
             ps.setInt(2, blog.getId());
