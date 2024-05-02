@@ -39,6 +39,8 @@ public class BlogService implements IService<Blog> {
 
         return new Blog(titre, content, imageb, date);
     }
+
+
     public ArrayList<Blog> searchByTitle(String title) {
         ArrayList<Blog> searchResults = new ArrayList<>();
         String query = "SELECT * FROM blog WHERE titre LIKE ?";
@@ -57,6 +59,28 @@ public class BlogService implements IService<Blog> {
             }
         } catch (SQLException e) {
             System.out.println("Erreur lors de la recherche par titre : " + e.getMessage());
+        }
+        return searchResults;
+    }
+    public ArrayList<Blog> searchByFavoris(boolean favorisValue) {
+        ArrayList<Blog> searchResults = new ArrayList<>();
+        String query = "SELECT * FROM blog WHERE favoris = ?";
+        try {
+            PreparedStatement pstm = cnx.prepareStatement(query);
+            pstm.setBoolean(1, favorisValue);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                Blog blog = new Blog();
+                blog.setId(rs.getInt("id"));
+                blog.setTitre(rs.getString("titre"));
+                blog.setDate(rs.getDate("date"));
+                blog.setContent(rs.getString("content"));
+                blog.setImageb(rs.getString("imageb"));
+                blog.setFavoris(rs.getBoolean("favoris"));
+                searchResults.add(blog);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la recherche par favoris : " + e.getMessage());
         }
         return searchResults;
     }
@@ -124,6 +148,7 @@ public class BlogService implements IService<Blog> {
 
     public void update(Blog b) {
         try {
+            if (b != null) {
             String req = "update blog  set titre =? , content =? ,imageb=? where id=?";
             PreparedStatement pstm = cnx.prepareStatement(req);
             pstm.setString(1, b.getTitre());
@@ -138,6 +163,8 @@ public class BlogService implements IService<Blog> {
                 System.out.println("Post modifie avec succès !");//
             } else {
                System.out.println("Échec de modif  du post.");
+            } } else {
+                System.out.println("L'objet Blog passé en paramètre est null.");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage()); }

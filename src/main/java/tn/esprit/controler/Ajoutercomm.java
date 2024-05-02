@@ -91,7 +91,7 @@ public class Ajoutercomm {
 
     public void ajoutcomm(ActionEvent actionEvent) {
         CommService service=new CommService();
-        int blogId  =111;   String contenu = comm.getText();
+        int blogId  =113;   String contenu = comm.getText();
         if (!contenu.isEmpty()) {
             comm newComment = new comm(0, blogId, contenu, null);
             CommService.addComment(newComment);

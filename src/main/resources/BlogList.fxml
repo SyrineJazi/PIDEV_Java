@@ -146,8 +146,18 @@
                         </HBox>
                         <Pane prefHeight="61.0" prefWidth="103.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card">
-                           
-                        </HBox>
+                           <children>
+                              <Label prefHeight="29.0" prefWidth="190.0" text="mes favoris " textFill="#878787">
+                                 <font>
+                                    <Font name="Cambria Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="favoris" mnemonicParsing="false" onAction="#onsearchfavoris" prefHeight="41.0" prefWidth="38.0" styleClass="search-button" text="*" textFill="#b0c111">
+                                 <font>
+                                    <Font name="System Bold Italic" size="46.0" />
+                                 </font>
+                              </Button>
+                           </children></HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
                      </children>
                      <VBox.margin>

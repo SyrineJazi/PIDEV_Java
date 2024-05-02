@@ -53,6 +53,8 @@ import java.util.ResourceBundle;
 public class BlogList implements Initializable {
 
     @FXML
+    private Button favoris;
+    @FXML
     private Button blogEdit_btn;
 
     @FXML
@@ -77,7 +79,8 @@ public class BlogList implements Initializable {
     private TextField onsearchbloglabel;
     @FXML
     private ScrollPane scroll;
-
+    @FXML
+    private ImageView favorisbutton;
     @FXML
     private TextField searchTextField;
     @FXML
@@ -88,6 +91,7 @@ public class BlogList implements Initializable {
         return sv.getAll();
     }
     private MyListener myListener;
+
 
 
     @FXML
@@ -287,11 +291,11 @@ public class BlogList implements Initializable {
 
         }
 
-    private void setOnsearchbloglabel() throws BlogService.ItemNotFoundException {
-        String keyWord = onsearchbloglabel.getText();
+    @FXML
+    void onsearchfavoris(ActionEvent event) {
         BlogService sv = new BlogService();
-        ArrayList<Blog> foundItems = sv.searchByTitle(keyWord);
-       blogs = FXCollections.observableArrayList(foundItems);
+        ArrayList<Blog> foundItems = sv.searchByFavoris(true); // Recherche des blogs avec favoris = true
+        blogs = FXCollections.observableArrayList(foundItems);
         buildGrid();
     }
 }
