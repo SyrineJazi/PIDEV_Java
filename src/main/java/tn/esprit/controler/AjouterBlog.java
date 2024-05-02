@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class AjouterBlog {
 
@@ -169,7 +170,36 @@ public class AjouterBlog {
         }
     }
 
+    public static boolean verifyBadWords(String word){
+        String[] badWords = {
+                "fuck",
+                "shit",
+                "asshole",
+                "bitch",
+                "bastard",
+                "cunt",
+                "motherfucker",
+                "dickhead",
+                "cock",
+                "piss",
+                "twat",
+                "whore",
+                "slut",
+                "nigger",
+                "retard",
+                "spastic",
+                "dyke",
+                "kike",
+                "chink",
+        };
 
+        // Create a regular expression pattern from the list of bad words
+        String patternString = String.join("|", badWords);
+        Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+
+        // Check if the input string contains any bad words
+        return pattern.matcher(word).find();
+    }
 
 
 
@@ -191,9 +221,14 @@ public class AjouterBlog {
             String descriptionText = description.getText();
             String imagebText = imageb.getText();
 
-
-
-
+        if (verifyBadWords(titreText)) {
+            afficherErreur("Le titre contient des mots interdits.");
+            return;
+        }
+        if (verifyBadWords(descriptionText)) {
+            afficherErreur("La description contient des mots interdits.");
+            return;
+        }
 
             // Créer un objet Blog avec les données saisies
             Date currentDate = new Date();
@@ -209,10 +244,12 @@ public class AjouterBlog {
                 alert.setContentText("Le blog a été ajouté avec succés.");
                 alert.show();
                 showBlog();
+                service.update(blog);
             } catch (Exception e) {
                 afficherErreur("Une erreur s'est produite lors de l'ajout du blog : " + e.getMessage());
                 e.printStackTrace();
             };
+
 
     }
 

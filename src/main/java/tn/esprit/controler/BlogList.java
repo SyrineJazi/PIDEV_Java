@@ -316,14 +316,15 @@ public class BlogList implements Initializable {
                     chosenBlog = unit;
                     break;
                 }
-            } // <-- Cette accolade était mal placée dans votre code
-
-            // Check if a blog is chosen
+            }
             if (chosenBlog != null) {
                 chosenBlog.setFavoris(true);
+                BlogService blogService = new BlogService();
+                blogService.addToFavorites(chosenBlog);
+
                 buildGrid();
                 // Update the blog in the database or wherever it's stored
-                BlogService blogService = new BlogService();
+
                 blogService.update(chosenBlog);
 
                 // Optionally, provide feedback to the user

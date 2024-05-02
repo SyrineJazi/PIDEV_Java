@@ -98,6 +98,7 @@ public class BlogService implements IService<Blog> {
             pstm.executeUpdate();
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected > 0) {
+                pstm.executeUpdate();
                 System.out.println("Post ajouté avec succès !");
             } else {
                 System.out.println("Échec de l'ajout du post.");
@@ -186,4 +187,35 @@ pstm.executeUpdate();
 
         return false;
     }
+    public void addToFavorites(Blog blog) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+
+            String query = "UPDATE blogs SET favoris = ? WHERE id = ?";
+            ps = cnx.prepareStatement(query);
+            ps.setBoolean(1, true); // true pour ajouter aux favoris
+            ps.setInt(2, blog.getId());
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Blog ajouté aux favoris avec succès dans la base de données.");
+            } else {
+                System.out.println("L'ajout du blog aux favoris dans la base de données a échoué.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }}
+
 }
