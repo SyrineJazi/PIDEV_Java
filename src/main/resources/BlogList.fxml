@@ -95,7 +95,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
                            <children>
-                              <Button fx:id="blogEdit_btn" mnemonicParsing="false" onAction="#onblogedit" prefHeight="23.0" prefWidth="224.0" styleClass="search-button" text="Modifier" textFill="#eef4f3">
+                              <Button fx:id="blogEdit_btn" mnemonicParsing="false" onAction="#onblogedit" prefHeight="42.0" prefWidth="111.0" styleClass="search-button" text="Modifier" textFill="#eef4f3">
                                  <HBox.margin>
                                     <Insets bottom="10.0" />
                                  </HBox.margin>
@@ -108,6 +108,7 @@
                                     <Insets bottom="15.0" left="20.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
+                              <Button fx:id="favadd" mnemonicParsing="false" onAction="#onfavadd" stylesheets="@styles.css" text="fav*add" />
                            </children>
                         </HBox>
                      </children>

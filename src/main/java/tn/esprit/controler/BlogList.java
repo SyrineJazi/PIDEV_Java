@@ -53,6 +53,8 @@ import java.util.ResourceBundle;
 public class BlogList implements Initializable {
 
     @FXML
+    private Button favadd;
+    @FXML
     private Button favoris;
     @FXML
     private Button blogEdit_btn;
@@ -131,6 +133,26 @@ public class BlogList implements Initializable {
             }
         } else {
             // Handle case where the chosen voyage is not found
+            System.out.println("Chosen blog not found: " + name);
+        }
+
+    }
+    @FXML
+    void onblogedit(ActionEvent event) throws IOException {
+        String name = titre.getText();
+        Blog chosenblog = null;
+        for (Blog unit : blogs) {
+            if (unit.getTitre().equals(name)) {
+                chosenblog = unit;
+                System.out.println("modidffff avec succes ");
+                break;
+            }
+        }
+        if (chosenblog != null) {
+            System.out.println("IM NAVIGATING");
+            navigateToAjouterblog(chosenblog, event);
+
+        } else {
             System.out.println("Chosen blog not found: " + name);
         }
 
@@ -231,23 +253,8 @@ public class BlogList implements Initializable {
         buildGrid(); // Construire la grille avec les blogs disponibles
     }
 
-    @FXML
-    void onblogedit(ActionEvent event) throws IOException{
-        String name = titre.getText();
-        Blog chosenblog = null;
-        for (Blog unit : blogs) {
-            if (unit.getTitre().equals(name)) {
-                chosenblog = unit;
-                System.out.println("modidffff avec succes ");
-                break;
-            }}
-        if (chosenblog != null) {
-            System.out.println("IM NAVIGATING");
-            navigateToAjouterblog(chosenblog,  event );
 
-        }else { System.out.println("Chosen blog not found: " + name);
-    }
-}
+
 
     private void navigateToAjouterblog(Blog chosenblog, ActionEvent event) {
 
@@ -298,4 +305,32 @@ public class BlogList implements Initializable {
         blogs = FXCollections.observableArrayList(foundItems);
         buildGrid();
     }
-}
+
+    @FXML
+    void onfavadd(ActionEvent event) {
+
+            String name = titre.getText();
+            Blog chosenBlog = null;
+            for (Blog unit : blogs) {
+                if (unit.getTitre().equals(name)) {
+                    chosenBlog = unit;
+                    break;
+                }
+            } // <-- Cette accolade était mal placée dans votre code
+
+            // Check if a blog is chosen
+            if (chosenBlog != null) {
+                chosenBlog.setFavoris(true);
+                buildGrid();
+                // Update the blog in the database or wherever it's stored
+                BlogService blogService = new BlogService();
+                blogService.update(chosenBlog);
+
+                // Optionally, provide feedback to the user
+                System.out.println("Blog ajouté aux favoris avec succès !");
+            } else {
+                // Provide feedback to the user that no blog is chosen
+                System.out.println("Aucun blog choisi.");
+            }
+        }
+    }
