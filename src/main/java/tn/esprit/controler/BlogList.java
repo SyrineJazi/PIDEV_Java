@@ -358,21 +358,6 @@ public class BlogList implements Initializable {
 
     }
     private void updateGrid() {
-        grid.getChildren().clear(); // Effacez le contenu actuel de la grille
-
-        // Obtenez les blogs de la page actuelle à partir de la pagination
-        ObservableList<Blog> currentPageBlogs = pagination.getCurrentPageBlogs();
-
-        // Ajoutez les blogs de la page actuelle à la grille
-        for (int i = 0; i < currentPageBlogs.size(); i++) {
-            Blog blog = currentPageBlogs.get(i);
-          buildGrid();  // Ajoutez le blog à votre grille
-            // ...
-        }
-
-        // Mettez à jour les informations de pagination (par exemple, le numéro de page actuelle)
-        currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1));
-        totalPagesLabel.setText("sur " + pagination.getPageCount());
     }
 
 
