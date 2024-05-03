@@ -8,6 +8,7 @@ tn\esprit\services\CommService.class
 tn\esprit\utils\MyDataBase.class
 tn\esprit\controler\Cardblogs.class
 tn\esprit\controler\BlogList$1.class
+tn\esprit\utils\Pagination.class
 tn\esprit\controler\Ajoutercomm.class
 tn\esprit\interfaces\MyListener.class
 tn\esprit\models\Personne.class

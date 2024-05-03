@@ -46,7 +46,7 @@ import javafx.stage.Stage;
 import tn.esprit.interfaces.MyListener;
 import tn.esprit.models.Blog;
 import tn.esprit.services.BlogService;
-
+import tn.esprit.utils.Pagination;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,7 +61,10 @@ public class BlogList implements Initializable {
 
     @FXML
     private ImageView blogimg;
-
+    @FXML
+    private Label currentPageLabel;
+    @FXML
+    private Label totalPagesLabel;
     @FXML
     private VBox chosenblogCard;
 
@@ -87,6 +90,8 @@ public class BlogList implements Initializable {
     private TextField searchTextField;
     @FXML
     private Label titre;
+
+    private Pagination pagination;
     private ObservableList<Blog> blogs = FXCollections.observableArrayList(getList_blogs());
     private ArrayList<Blog> getList_blogs(){
         BlogService sv = new BlogService();
@@ -240,6 +245,10 @@ public class BlogList implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         BlogService blogService = new BlogService();
+        List<Blog> allBlogsList = blogService.getAll(); // Obtenez la liste de tous les blogs
+
+        pagination = new Pagination(blogs, 4); // Par exemple, affiche 10 blogs par page
+        updateGrid();
         blogs.addAll(blogService.getAll());
         if (!blogs.isEmpty()) {
            setChosenBlog(blogs.get(0)); // Définir le premier blog comme choisi, ou effectuer toute autre initialisation nécessaire
@@ -250,7 +259,7 @@ public class BlogList implements Initializable {
                 }
             };
         }
-        buildGrid(); // Construire la grille avec les blogs disponibles
+       buildGrid(); // Construire la grille avec les blogs disponibles
     }
 
 
@@ -336,4 +345,35 @@ public class BlogList implements Initializable {
                 System.out.println("Aucun blog choisi.");
             }
         }
+    @FXML
+    void nextPage(ActionEvent event) {
+        pagination.nextPage(); // Passez à la page suivante
+        updateGrid(); // Mettez à jour la grille avec les blogs de la nouvelle page
+
     }
+    @FXML
+    void previouspage(ActionEvent event) {
+        pagination.previousPage(); // Passez à la page précédente
+        updateGrid(); // Mettez à jour la grille avec les blogs de la nouvelle page
+
+    }
+    private void updateGrid() {
+        grid.getChildren().clear(); // Effacez le contenu actuel de la grille
+
+        // Obtenez les blogs de la page actuelle à partir de la pagination
+        ObservableList<Blog> currentPageBlogs = pagination.getCurrentPageBlogs();
+
+        // Ajoutez les blogs de la page actuelle à la grille
+        for (int i = 0; i < currentPageBlogs.size(); i++) {
+            Blog blog = currentPageBlogs.get(i);
+          buildGrid();  // Ajoutez le blog à votre grille
+            // ...
+        }
+
+        // Mettez à jour les informations de pagination (par exemple, le numéro de page actuelle)
+        currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1));
+        totalPagesLabel.setText("sur " + pagination.getPageCount());
+    }
+
+
+}

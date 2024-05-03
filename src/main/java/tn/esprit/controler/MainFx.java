@@ -37,8 +37,6 @@ public class MainFx extends Application {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-
     }
     //public static String chatGPT(String message) {
 //String url="https://api.openai.com/v1/chat/completions";
