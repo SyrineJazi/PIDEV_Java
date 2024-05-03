@@ -98,8 +98,8 @@ public class BlogService implements IService<Blog> {
             pstm.executeUpdate();
             int rowsAffected = pstm.executeUpdate();
             if (rowsAffected > 0) {
-                pstm.executeUpdate();
                 System.out.println("Post ajouté avec succès !");
+                pstm.executeUpdate();
             } else {
                 System.out.println("Échec de l'ajout du post.");
             }

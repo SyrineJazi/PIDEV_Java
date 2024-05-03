@@ -245,8 +245,10 @@ public class AjouterBlog {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Le blog a été ajouté avec succés.");
                 alert.show();
+
                 showBlog();
-                service.update(blog);
+
+                navigateToListBlogs(actionEvent);
             } catch (Exception e) {
                 afficherErreur("Une erreur s'est produite lors de l'ajout du blog : " + e.getMessage());
                 e.printStackTrace();
@@ -254,6 +256,8 @@ public class AjouterBlog {
 
 
     }
+
+
 
 
 }

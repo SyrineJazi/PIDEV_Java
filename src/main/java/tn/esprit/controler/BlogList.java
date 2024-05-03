@@ -106,28 +106,27 @@ public class BlogList implements Initializable {
         // Retrieve the chosen voyage name
         String name = titre.getText();
 
-        Blog chosenblog = null; // Declare without initialization
-        // Loop through the list of voyages to find the chosen voyage
+        Blog chosenblog = null;
         for (Blog unit : blogs) {
             if (unit.getTitre().equals(name)) {
-                chosenblog = unit; // Assign the found voyage
+                chosenblog = unit;
                 System.out.println("the thing worked");
-                break; // Break out of the loop after finding the voyage
+                break;
             }
         }
-        // Check if the chosen voyage was found
+
         if (chosenblog != null) {
-            // Pass the chosen voyage to the next page
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de la suppression");
             alert.setContentText("Etes-vous sûre de vouloir supprimer cet item ?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK){
-                System.out.println("IM deleting");
+                System.out.println(" deleting");
                BlogService sv = new BlogService();
                 sv.delete(chosenblog);
 
-                // Update the observable list by removing the deleted voyage
+
                blogs.remove(chosenblog);
                 // Update the UI by rebuilding the grid
                 buildGrid();
@@ -245,21 +244,20 @@ public class BlogList implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         BlogService blogService = new BlogService();
-        List<Blog> allBlogsList = blogService.getAll(); // Obtenez la liste de tous les blogs
+        List<Blog> allBlogsList = blogService.getAll();
 
-        pagination = new Pagination(blogs, 4); // Par exemple, affiche 10 blogs par page
+        pagination = new Pagination(blogs, 6); //
         updateGrid();
         blogs.addAll(blogService.getAll());
         if (!blogs.isEmpty()) {
-           setChosenBlog(blogs.get(0)); // Définir le premier blog comme choisi, ou effectuer toute autre initialisation nécessaire
-            myListener = new MyListener() {
+           setChosenBlog(blogs.get(0));
+           myListener = new MyListener() {
                 @Override
                 public void onClickListener(Blog blog) {
-                   setChosenBlog(blog); // Mettre à jour le blog choisi lorsqu'un élément est cliqué dans la grille
-                }
+                   setChosenBlog(blog);   }
             };
         }
-       buildGrid(); // Construire la grille avec les blogs disponibles
+      buildGrid();
     }
 
 
@@ -282,21 +280,7 @@ public class BlogList implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public ArrayList<Blog> findByNom_ouDestination(String nom) throws BlogService.ItemNotFoundException {
-        ArrayList<Blog> liste_des_blogs = this.getList_blogs();
-        ArrayList<Blog> found_items = new ArrayList<>();
-        Iterator<Blog> itr = liste_des_blogs.iterator();
-        while (itr.hasNext()) {
-            Blog blog = itr.next();
-            if (blog.getTitre().toLowerCase().contains(nom) ){
-                found_items.add(blog);
-            }
-        }
-        if (found_items.isEmpty()) {
-            throw new BlogService.ItemNotFoundException("Le blog du nom ou destination " + nom + " n'existe pas.");
-        }
-        return found_items;
-    }
+
     @FXML
     void onsearchvoyage(ActionEvent event) throws BlogService.ItemNotFoundException {
             String keyWord = onsearchbloglabel.getText();
