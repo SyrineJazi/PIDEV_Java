@@ -264,9 +264,7 @@ public class BlogList implements Initializable {
             };
         }
       buildGrid();
-        FontAwesomeIconView starIcon = new FontAwesomeIconView(FontAwesomeIcon.STAR);
-        starIcon.setSize("24");
-        favButton.setGraphic(starIcon);
+
     }
 
 
