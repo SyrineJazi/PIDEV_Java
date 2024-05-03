@@ -220,7 +220,9 @@ public class AjouterBlog {
             String titreText = titre.getText();
             String descriptionText = description.getText();
             String imagebText = imageb.getText();
-
+        if (titreText.isEmpty()) {
+            titre.setStyle("-fx-border-color :#bb26c6; -fx-border-width: 2px;");
+        }
         if (verifyBadWords(titreText)) {
             afficherErreur("Le titre contient des mots interdits.");
             return;
