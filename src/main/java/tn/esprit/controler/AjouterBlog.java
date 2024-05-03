@@ -90,6 +90,7 @@ public class AjouterBlog {
 
     @FXML
     void navigateToListBlogs(ActionEvent event) {
+        BlogService service = new BlogService();
         try {
             FXMLLoader loader = null;
             Parent root = loader.load(getClass().getResource("/BlogList.fxml"));
@@ -231,6 +232,9 @@ public class AjouterBlog {
             afficherErreur("La description contient des mots interdits.");
             return;
         }
+        if (descriptionText.isEmpty()) {
+            description.setStyle("-fx-border-color :#bb26c6; -fx-border-width: 2px;");
+        }
 
             // Créer un objet Blog avec les données saisies
             Date currentDate = new Date();
@@ -248,7 +252,7 @@ public class AjouterBlog {
 
                 showBlog();
 
-                navigateToListBlogs(actionEvent);
+                //navigateToListBlogs(actionEvent);
             } catch (Exception e) {
                 afficherErreur("Une erreur s'est produite lors de l'ajout du blog : " + e.getMessage());
                 e.printStackTrace();

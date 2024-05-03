@@ -49,9 +49,14 @@ import tn.esprit.services.BlogService;
 import tn.esprit.utils.Pagination;
 import java.io.IOException;
 import java.net.URL;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.scene.control.ToggleButton;
+
 import java.util.ResourceBundle;
 public class BlogList implements Initializable {
-
+    @FXML
+    private ToggleButton favButton;
     @FXML
     private Button favadd;
     @FXML
@@ -243,6 +248,7 @@ public class BlogList implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         BlogService blogService = new BlogService();
         List<Blog> allBlogsList = blogService.getAll();
 
@@ -258,6 +264,9 @@ public class BlogList implements Initializable {
             };
         }
       buildGrid();
+        FontAwesomeIconView starIcon = new FontAwesomeIconView(FontAwesomeIcon.STAR);
+        starIcon.setSize("24");
+        favButton.setGraphic(starIcon);
     }
 
 
