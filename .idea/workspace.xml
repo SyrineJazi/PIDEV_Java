@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f56d61b-5caa-4e91-b81f-54a428a44168" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/utils/Pagination.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/BlogList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BlogList.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +116,7 @@
       <workItem from="1714156261058" duration="40000" />
       <workItem from="1714241451899" duration="55934000" />
       <workItem from="1714405256293" duration="9144000" />
-      <workItem from="1714555432891" duration="24319000" />
+      <workItem from="1714555432891" duration="24653000" />
     </task>
     <servers />
   </component>

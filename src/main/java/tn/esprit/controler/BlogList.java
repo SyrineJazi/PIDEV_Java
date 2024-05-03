@@ -358,6 +358,33 @@ public class BlogList implements Initializable {
 
     }
     private void updateGrid() {
+        grid.getChildren().clear(); // Effacez le contenu actuel de la grille
+
+        // Obtenez les blogs de la page actuelle à partir de la pagination
+        ObservableList<Blog> currentPageBlogs = pagination.getCurrentPageBlogs();
+
+        // Ajoutez les blogs de la page actuelle à la grille
+        for (int i = 0; i < currentPageBlogs.size(); i++) {
+            Blog blog = currentPageBlogs.get(i);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cardblogs.fxml"));
+            AnchorPane anchorPane;
+            try {
+                anchorPane = fxmlLoader.load();
+                Cardblogs controller = fxmlLoader.getController();
+                controller.setData(blog, myListener);
+                grid.getChildren().add(anchorPane);
+                // Définir la position de l'élément dans la grille
+                GridPane.setRowIndex(anchorPane, i / 3); // Par exemple, 3 éléments par ligne
+                GridPane.setColumnIndex(anchorPane, i % 3);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Mettez à jour les informations de pagination (par exemple, le numéro de page actuelle)
+        currentPageLabel.setText("Page " + (pagination.getCurrentPageIndex() + 1));
+        totalPagesLabel.setText("sur " + pagination.getPageCount());
     }
 
 
