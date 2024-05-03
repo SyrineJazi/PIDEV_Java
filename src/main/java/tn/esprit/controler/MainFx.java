@@ -1,5 +1,13 @@
 package tn.esprit.controler;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,4 +40,9 @@ public class MainFx extends Application {
 
 
     }
+    //public static String chatGPT(String message) {
+//String url="https://api.openai.com/v1/chat/completions";
+//String apikey="";
+  //String model = "gpt-3.5-turbo";
+ //  return ;}
 }
