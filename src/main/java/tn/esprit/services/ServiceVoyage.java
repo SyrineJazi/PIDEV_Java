@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class ServiceVoyage implements IService<Voyage>{
 
     private Connection cnx;
-    public ServiceVoyage(){ cnx = MyDataBase.getInstance().getCnx();}
+    public ServiceVoyage(){ cnx = MyDataBase.getInstance().getConnection();}
     public Voyage saisie() {
         int id, prix;
         String nom, destination, description, image1, type;

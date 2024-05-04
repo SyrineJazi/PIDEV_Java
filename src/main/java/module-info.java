@@ -9,6 +9,8 @@ module PIDEV.voyage {
     requires java.desktop;
     requires json.simple;
     requires AnimateFX;
+    requires org.controlsfx.controls;
+    requires org.apache.pdfbox;
 
     opens tn.esprit.controllers;
 }

@@ -321,21 +321,21 @@ public class AfficherLesVoyages implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //Construire la grille
-     if(!listeObservable_voyages.isEmpty()){
-         setChosenVoyage(listeObservable_voyages.get(0));
-         myListener = new MyListener(){
-             @Override
-             public void onClickListener(Voyage voyage) {
-                 setChosenVoyage(voyage);
-             }
-         };
-     }
-     buildGrid();
-     //Initialiser le combo box de Tri
-     sorting_methods_comboBOX.setPromptText("Trier les voyages selon...");
-     sorting_methods_comboBOX.getItems().addAll("Par Type", "Par Nom","Par Prix");
+        if(!listeObservable_voyages.isEmpty()){
+            setChosenVoyage(listeObservable_voyages.get(0));
+            myListener = new MyListener(){
+                @Override
+                public void onClickListener(Voyage voyage) {
+                    setChosenVoyage(voyage);
+                }
+            };
+        }
+        buildGrid();
+        //Initialiser le combo box de Tri
+        sorting_methods_comboBOX.setPromptText("Trier les voyages selon...");
+        sorting_methods_comboBOX.getItems().addAll("Par Type", "Par Nom","Par Prix");
 
-     //Initialiser les boutons
+        //Initialiser les boutons
         ImageView backarrow = new ImageView(getClass().getResource("/img/back.png").toExternalForm());
         backArrow.setGraphic(backarrow);
         ImageView reloadbtn = new ImageView(getClass().getResource("/img/reload.png").toExternalForm());

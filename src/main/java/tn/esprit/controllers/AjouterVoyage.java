@@ -138,8 +138,8 @@ public class AjouterVoyage {
         voyagePrix = Integer.parseInt(voyagePrixText);
         if (voyagePrix <= 0) {
             afficherErreur("Le prix du voyage doit être un nombre positif.");
-                return;
-            }
+            return;
+        }
 
 
         LocalDate dateToday = java.time.LocalDate.now();

@@ -11,7 +11,7 @@ import java.util.*;
 public class ServiceActivite implements IService<Activite>{
 
     private Connection cnx;
-    public ServiceActivite(){ cnx = MyDataBase.getInstance().getCnx();}
+    public ServiceActivite(){ cnx = MyDataBase.getInstance().getConnection();}
     public Activite saisie() {
         int id;
         String nom, description, type;
