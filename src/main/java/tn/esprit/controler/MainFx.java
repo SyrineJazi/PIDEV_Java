@@ -1,11 +1,6 @@
 package tn.esprit.controler;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 
 import javafx.application.Application;
@@ -15,8 +10,6 @@ import javafx.scene.Scene;
 
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class MainFx extends Application {
 
     public static void main(String[] args) {
@@ -25,7 +18,7 @@ public class MainFx extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/AjouterBlogback.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/ChatBot.fxml"));
         try {
             Parent root =loader.load();
             Scene scene = new Scene(root);
