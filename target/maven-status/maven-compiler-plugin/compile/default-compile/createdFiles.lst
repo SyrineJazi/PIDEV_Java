@@ -12,8 +12,10 @@ tn\esprit\utils\Pagination.class
 tn\esprit\controler\Ajoutercomm.class
 tn\esprit\interfaces\MyListener.class
 tn\esprit\models\Personne.class
+tn\esprit\controler\AjouterBlogback.class
 Main.class
 tn\esprit\services\BlogService$ItemNotFoundException.class
+tn\esprit\services\BlogServiceback.class
 tn\esprit\interfaces\IService.class
 tn\esprit\controler\AjouterBlog.class
 tn\esprit\services\BlogService.class

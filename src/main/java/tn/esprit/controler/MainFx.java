@@ -25,7 +25,7 @@ public class MainFx extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/BlogList.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/AjouterBlogback.fxml"));
         try {
             Parent root =loader.load();
             Scene scene = new Scene(root);

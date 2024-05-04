@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f56d61b-5caa-4e91-b81f-54a428a44168" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlogback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BlogServiceback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AjouterBlogback.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/AjouterBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/BlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BlogList.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/BlogList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BlogList.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/AjouterBlog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/AjouterBlog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/BlogList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controler/MainFx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tn/esprit/controler/MainFx.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "blog__java",
-    "last_opened_file_path": "C:/Users/razan/OneDrive - ESPRIT/Bureau/blog-pi/src/main/java",
+    "last_opened_file_path": "C:/Users/razan/OneDrive - ESPRIT/Bureau/blog-pi/src/main/resources",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -70,8 +68,8 @@
       <recent name="tn.esprit.controler" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\razan\OneDrive - ESPRIT\Bureau\blog-pi\src\main\java" />
       <recent name="C:\Users\razan\OneDrive - ESPRIT\Bureau\blog-pi\src\main\resources" />
+      <recent name="C:\Users\razan\OneDrive - ESPRIT\Bureau\blog-pi\src\main\java" />
       <recent name="C:\Users\razan\OneDrive - ESPRIT\Bureau\blog-pi\src\main\resources\img" />
       <recent name="C:\Users\razan\Desktop\workshopJavaFX-main\src\main\resources" />
     </key>
@@ -85,6 +83,8 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="tn.esprit.services" />
+      <recent name="tn.esprit.controler" />
       <recent name="tn.esprit.interfaces" />
     </key>
   </component>
@@ -124,7 +124,8 @@
       <workItem from="1714156261058" duration="40000" />
       <workItem from="1714241451899" duration="55934000" />
       <workItem from="1714405256293" duration="9144000" />
-      <workItem from="1714555432891" duration="29649000" />
+      <workItem from="1714555432891" duration="30128000" />
+      <workItem from="1714834654880" duration="456000" />
     </task>
     <servers />
   </component>
